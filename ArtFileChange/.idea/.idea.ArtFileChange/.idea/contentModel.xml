@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\boris\.Rider2017.3\system\resharper-host\local\Transient\ReSharperHost\v11\SolutionCaches\_ArtFileChange.-897658249.00" t="ExcludeRecursive" />
+    <e p="C:\Users\boris\Desktop\ArtFileRename\ArtFileChange" t="IncludeFlat">
+      <e p="ArtFileChange" t="IncludeRecursive">
+        <e p=".editorconfig" t="Include" />
+        <e p="App.config" t="Include" />
+        <e p="app_icon.ico" t="Include" />
+        <e p="ArtFileChange.csproj" t="IncludeRecursive" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Config.cs" t="Include" />
+        <e p="FrmArticleCombination.cs" t="Include" />
+        <e p="FrmArticleCombination.Designer.cs" t="Include" />
+        <e p="FrmArticleCombination.resx" t="Include" />
+        <e p="FrmDatabase.cs" t="Include" />
+        <e p="FrmDatabase.Designer.cs" t="Include" />
+        <e p="FrmDatabase.resx" t="Include" />
+        <e p="FrmHistory.cs" t="Include" />
+        <e p="FrmHistory.Designer.cs" t="Include" />
+        <e p="FrmHistory.resx" t="Include" />
+        <e p="FrmRename.cs" t="Include" />
+        <e p="FrmRename.Designer.cs" t="Include" />
+        <e p="FrmRename.resx" t="Include" />
+        <e p="Geometry.cs" t="Include" />
+        <e p="MyTextBox.cs" t="Include" />
+        <e p="MyTextBox.Designer.cs" t="Include" />
+        <e p="MyTextBox.resx" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+          <e p="Resources.Designer.cs" t="Include" />
+          <e p="Resources.resx" t="Include" />
+        </e>
+        <e p="Resources" t="Include">
+          <e p="addplus_icon_64.png" t="Include" />
+          <e p="clear_48.png" t="Include" />
+          <e p="exit_48.png" t="Include" />
+          <e p="generate_24.png" t="Include" />
+          <e p="icons8-database-filled-32.png" t="Include" />
+          <e p="icons8-edit-file-32.png" t="Include" />
+          <e p="icons8-reset-32.png" t="Include" />
+          <e p="icons8-save-32.png" t="Include" />
+          <e p="icons8-search-property-32.png" t="Include" />
+          <e p="save_48.png" t="Include" />
+          <e p="search_24.png" t="Include" />
+        </e>
+      </e>
+      <e p="ArtFileChange.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>

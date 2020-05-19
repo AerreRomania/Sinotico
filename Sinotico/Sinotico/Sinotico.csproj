@@ -1,0 +1,533 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{21896A48-5160-4076-8EF6-3F7B6481C236}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Sinotico</RootNamespace>
+    <AssemblyName>Sinotico</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr3.Runtime.3.5.1\lib\net40-client\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Remotion.Linq, Version=2.1.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Remotion.Linq.2.1.2\lib\net45\Remotion.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Linq.EagerFetching, Version=2.1.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Remotion.Linq.EagerFetching.2.1.0\lib\net45\Remotion.Linq.EagerFetching.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Device" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WinFormAnimation, Version=1.5.6298.3372, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WinFormAnimation.1.5.6298.3372\lib\net35-client\WinFormAnimation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DatabaseTableClasses\EfficiencyBounds.cs" />
+    <Compile Include="DatabaseTableClasses\Holidays.cs" />
+    <Compile Include="DatabaseTableClasses\MonthTrash.cs" />
+    <Compile Include="DatabaseTableClasses\Tables.cs" />
+    <Compile Include="ExcelExport.cs" />
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="ExternalAdress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExternalAdress.Designer.cs">
+      <DependentUpon>ExternalAdress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmHolidays.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmHolidays.Designer.cs">
+      <DependentUpon>FrmHolidays.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLayout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLayout.Designer.cs">
+      <DependentUpon>FrmLayout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPrintCq.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPrintCq.Designer.cs">
+      <DependentUpon>FrmPrintCq.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSettings.Designer.cs">
+      <DependentUpon>FrmSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Geometry.cs" />
+    <Compile Include="Globals.cs" />
+    <Compile Include="LoadingInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainWnd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainWnd.Designer.cs">
+      <DependentUpon>MainWnd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MonthScartiRammendi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MonthScartiRammendi.Designer.cs">
+      <DependentUpon>MonthScartiRammendi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyMenuStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepArticles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepArticles.Designer.cs">
+      <DependentUpon>RepArticles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RepCharts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepCharts.Designer.cs">
+      <DependentUpon>RepCharts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RepChartsDynamic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepChartsDynamic.Designer.cs">
+      <DependentUpon>RepChartsDynamic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RepCleaners.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepCleaners.Designer.cs">
+      <DependentUpon>RepCleaners.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RepCleanersJob.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepCleanersJob.Designer.cs">
+      <DependentUpon>RepCleanersJob.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RepControlQuality.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepControlQuality.Designer.cs">
+      <DependentUpon>RepControlQuality.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RepEffMachines.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepEffMachines.Designer.cs">
+      <DependentUpon>RepEffMachines.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RepEffTurno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepEffTurno.Designer.cs">
+      <DependentUpon>RepEffTurno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RepGiornaliera.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepGiornaliera.Designer.cs">
+      <DependentUpon>RepGiornaliera.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RepMachineCleaners.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepMachineCleaners.Designer.cs">
+      <DependentUpon>RepMachineCleaners.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RepMachines.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepMachines.Designer.cs">
+      <DependentUpon>RepMachines.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RepMonthChanges.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepMonthChanges.Designer.cs">
+      <DependentUpon>RepMonthChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RepOEETEEP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepOEETEEP.Designer.cs">
+      <DependentUpon>RepOEETEEP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RepProduzioneCapiEfficienza.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepProduzioneCapiEfficienza.Designer.cs">
+      <DependentUpon>RepProduzioneCapiEfficienza.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RepScartiRammendi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepScartiRammendi.Designer.cs">
+      <DependentUpon>RepScartiRammendi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RepStopMachines.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepStopMachines.Designer.cs">
+      <DependentUpon>RepStopMachines.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RepTemperature.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepTemperature.Designer.cs">
+      <DependentUpon>RepTemperature.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SplitConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SplitConfiguration.Designer.cs">
+      <DependentUpon>SplitConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SplitScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SplitScreen.Designer.cs">
+      <DependentUpon>SplitScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Store.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Masthead.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Masthead.designer.cs">
+      <DependentUpon>Masthead.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WebApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WebApp.Designer.cs">
+      <DependentUpon>WebApp.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ExternalAdress.resx">
+      <DependentUpon>ExternalAdress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmHolidays.resx">
+      <DependentUpon>FrmHolidays.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLayout.resx">
+      <DependentUpon>FrmLayout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPrintCq.resx">
+      <DependentUpon>FrmPrintCq.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSettings.resx">
+      <DependentUpon>FrmSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadingInfo.resx">
+      <DependentUpon>LoadingInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainWnd.resx">
+      <DependentUpon>MainWnd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MonthScartiRammendi.resx">
+      <DependentUpon>MonthScartiRammendi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="RepArticles.resx">
+      <DependentUpon>RepArticles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepCharts.resx">
+      <DependentUpon>RepCharts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepChartsDynamic.resx">
+      <DependentUpon>RepChartsDynamic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepCleaners.resx">
+      <DependentUpon>RepCleaners.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepCleanersJob.resx">
+      <DependentUpon>RepCleanersJob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepControlQuality.resx">
+      <DependentUpon>RepControlQuality.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepEffMachines.resx">
+      <DependentUpon>RepEffMachines.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepEffTurno.resx">
+      <DependentUpon>RepEffTurno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepGiornaliera.resx">
+      <DependentUpon>RepGiornaliera.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepMachineCleaners.resx">
+      <DependentUpon>RepMachineCleaners.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepMachines.resx">
+      <DependentUpon>RepMachines.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Masthead.resx">
+      <DependentUpon>Masthead.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepMonthChanges.resx">
+      <DependentUpon>RepMonthChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepOEETEEP.resx">
+      <DependentUpon>RepOEETEEP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepProduzioneCapiEfficienza.resx">
+      <DependentUpon>RepProduzioneCapiEfficienza.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepScartiRammendi.resx">
+      <DependentUpon>RepScartiRammendi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepStopMachines.resx">
+      <DependentUpon>RepStopMachines.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepTemperature.resx">
+      <DependentUpon>RepTemperature.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SplitConfiguration.resx">
+      <DependentUpon>SplitConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SplitScreen.resx">
+      <DependentUpon>SplitScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WebApp.resx">
+      <DependentUpon>WebApp.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Store.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Store.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\checkmark_30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database_50.png" />
+    <None Include="Resources\icons8-percentage-16.png" />
+    <None Include="Resources\percentage_30.png" />
+    <None Include="Resources\card_30.png" />
+    <None Include="Resources\structural_30.png" />
+    <None Include="Resources\safe_30.png" />
+    <None Include="Resources\client_30.png" />
+    <None Include="Resources\percentage_white_30.png" />
+    <None Include="Resources\audit_30.png" />
+    <None Include="Resources\accounting_30.png" />
+    <None Include="Resources\safe_301.png" />
+    <None Include="Resources\house_30.png" />
+    <None Include="Resources\profile_30.png" />
+    <None Include="Resources\print1.png" />
+    <None Include="Resources\pdf.png" />
+    <None Include="Resources\report.png" />
+    <None Include="Resources\switch1.png" />
+    <None Include="Resources\change_shift_30.png" />
+    <None Include="Resources\tv_ylw_30.png" />
+    <None Include="Resources\tv_white_30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\load_animation.gif" />
+    <None Include="Resources\filter_and_sort_30.png" />
+    <None Include="Resources\tv_white_50.png" />
+    <None Include="Resources\tv_exit_full_50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="License-LGPL.txt" />
+    <None Include="Resources\parameters_insert_40.png" />
+    <None Include="Resources\parameters_delet_40.png" />
+    <None Include="Resources\parameters_edit_40.png" />
+    <None Include="Resources\icons8-save-64.png" />
+    <None Include="Resources\icons8-update-64.png" />
+    <None Include="Resources\icons8-folder-24.png" />
+    <None Include="Resources\icons8-add-folder-24.png" />
+    <None Include="Resources\icons8-internet-antenna-32-gray.png" />
+    <None Include="Resources\icons8-information-32_lightblue.png" />
+    <None Include="Resources\icons8-information-32.png" />
+    <None Include="Resources\icons8-internet-antenna-32.png" />
+    <None Include="Resources\settings_32x32.png" />
+    <None Include="Resources\logo_new_102x40.png" />
+    <None Include="Resources\save_24x24.png" />
+    <None Include="Resources\go_check_24x24.png" />
+    <None Include="Resources\calendar_32x32.png" />
+    <None Include="Resources\exit_white.png" />
+    <None Include="Resources\minimize_white.png" />
+    <None Include="Resources\w_filter.png" />
+    <None Include="Resources\f_filter.png" />
+    <None Include="Resources\reset_32x32.png" />
+    <None Include="Resources\tab_selected_32x32.png" />
+    <None Include="Resources\cartellina-check_32x32.png" />
+    <None Include="Resources\tune_32x32.png" />
+    <None Include="Resources\print_32x32.png" />
+    <None Include="Resources\pdf_32x32.png" />
+    <None Include="Resources\gant_32x32.png" />
+    <None Include="Resources\excel_32x32.png" />
+    <None Include="Resources\chart-bar_32x32.png" />
+    <None Include="Resources\grid_32x32.png" />
+    <None Include="Resources\temp-low_32x32.png" />
+    <None Include="Resources\temp-High_32x32.png" />
+    <None Include="Resources\home_lightblue.png" />
+    <None Include="Resources\operator.png" />
+    <None Include="Resources\modes1_silver.png" />
+    <None Include="Resources\modes1_green.png" />
+    <None Include="Resources\modes1_lightblue.png" />
+    <None Include="Resources\modes_silver.png" />
+    <None Include="Resources\modes_lightblue.png" />
+    <None Include="Resources\modes_green.png" />
+    <None Include="Resources\filter_silver.png" />
+    <None Include="Resources\output-onlinepngtools.png" />
+    <None Include="Resources\icons8-help-30light.png" />
+    <None Include="Resources\icons8-help-30.png" />
+    <None Include="Resources\icons8-help-30 %281%29.png" />
+    <None Include="Resources\icons8-print-64.png" />
+    <None Include="Resources\icons8-temperature-yellow.png" />
+    <None Include="Resources\icons8-temperature-blue.png" />
+    <None Include="Resources\icons8_split_screen.png" />
+    <None Include="Resources\mac_50x32_png.png" />
+    <None Include="Resources\mac_50x31_gif.gif" />
+    <None Include="Resources\new_mach_png.png" />
+    <None Include="Resources\new_mach_gif.gif" />
+    <None Include="Resources\dorbell_icons8.png" />
+    <None Include="Resources\dorbell.png" />
+    <None Include="Resources\red_bell.png" />
+    <None Include="Resources\up-icon.bmp" />
+    <None Include="Resources\down-icon.bmp" />
+    <None Include="Resources\downArrow.bmp" />
+    <None Include="Resources\testArrow %282%29.bmp" />
+    <None Include="Resources\testArrow.bmp" />
+    <None Include="Resources\bell.png" />
+    <None Include="Resources\arrow-up-icon.png" />
+    <None Include="Resources\arrow-down-icon.png" />
+    <None Include="Resources\arrowFilter.jpg" />
+    <None Include="Resources\bar_chart_30.png" />
+    <None Include="Resources\enlarge_20.png" />
+    <None Include="Resources\sub_task.png" />
+    <None Include="Resources\nav_forw_30.png" />
+    <None Include="Resources\exit_x_50_silver.png" />
+    <None Include="Resources\exit_x_32.png" />
+    <None Include="Resources\back_icon_orange.png" />
+    <None Include="Resources\icons_excel_filled_32.png" />
+    <None Include="Resources\icons_pdf_filled_32.png" />
+    <None Include="Resources\web_redir_30.png" />
+    <None Include="Resources\back_icon_red_32.png" />
+    <None Include="Resources\back_icon_32.png" />
+    <None Include="Resources\export_excel_icon_32.png" />
+    <None Include="Resources\export_pdf_icon_32.png" />
+    <None Include="Resources\back_and_close_50.png" />
+    <None Include="Resources\pdf_export_icon_50.png" />
+    <None Include="Resources\excel_export_icon_50.png" />
+    <None Include="Resources\back_and_close_red_50.png" />
+    <None Include="Resources\block_three.png" />
+    <None Include="Resources\block_two.png" />
+    <None Include="Resources\block_one.png" />
+    <None Include="Resources\internet_30.png" />
+    <None Include="Resources\sq_unselected_30.png" />
+    <None Include="Resources\sq_selected_30.png" />
+    <None Include="Resources\full_screen_new_30.png" />
+    <None Include="Resources\table_green_1_30.png" />
+    <None Include="Resources\table_30.png" />
+    <None Include="Resources\unhide_30.png" />
+    <None Include="Resources\hide.png" />
+    <None Include="Resources\error_30.png" />
+    <None Include="Resources\square_30.png" />
+    <None Include="Resources\machine_png.png" />
+    <None Include="Resources\machine_small_gif1.gif" />
+    <None Include="Resources\machine_small_gif.gif" />
+    <None Include="Resources\machine_gif.GIF" />
+    <None Include="Resources\clock_blue.png" />
+    <None Include="Resources\filter_black.png" />
+    <None Include="Resources\clock_black.png" />
+    <None Include="Resources\screen_black.png" />
+    <None Include="Resources\report_black.png" />
+    <None Include="Resources\pdf_black.png" />
+    <None Include="Resources\print_black.png" />
+    <None Include="Resources\back_and_close_red.png" />
+    <None Include="Resources\back_and_close.png" />
+    <None Include="Resources\logo.png" />
+    <None Include="Resources\back_close.png" />
+    <None Include="Resources\icon.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
