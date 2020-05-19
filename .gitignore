@@ -1,0 +1,8 @@
+*.user
+.vs
+Debug
+bin
+obj
+.config
+PublishProfiles
+packages
