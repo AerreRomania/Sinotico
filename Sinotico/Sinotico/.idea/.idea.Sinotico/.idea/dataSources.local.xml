@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="sinotico@quant" uuid="85ef6f78-5617-45a3-952c-7c6387af1264">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <secret-storage>master_key</secret-storage>
+      <domain-auth>true</domain-auth>
+      <first-sync>true</first-sync>
+    </data-source>
+  </component>
+</project>
