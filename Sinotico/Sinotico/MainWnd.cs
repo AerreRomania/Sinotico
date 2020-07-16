@@ -528,8 +528,6 @@ namespace Sinotico
             _sqTwo = cb_SQ_2;
             _sqThree = cb_SQ_3;
 
-
-
             this.BackColor = Color.FromArgb(248, 248, 248);
             // Gets the screen resolution
             SetMonitorWidth(Screen.GetWorkingArea(this).Width);
@@ -1361,7 +1359,7 @@ namespace Sinotico
                                 string lineNum = dr[0].ToString().Split(' ')[1];
                                 var cStr = string.Concat("L", lineNum);
                                 double.TryParse(dr[1].ToString(), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var tem);
-                                int.TryParse(dr[2].ToString(), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var hum);
+                                double.TryParse(dr[2].ToString(), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var hum);
                                 _hum_temp.Add(new Temperature(cStr, tem, hum));
                             }
                         }
@@ -6417,7 +6415,7 @@ namespace Sinotico
     public class Temperature
     {
         public Temperature() { }
-        public Temperature(string line, double temp, int hum)
+        public Temperature(string line, double temp, double hum)
         {
             Line = line;
             Temp = temp;
@@ -6425,7 +6423,7 @@ namespace Sinotico
         }
         public string Line { get; set; }
         public double Temp { get; set; }
-        public int Hum { get; set; }
+        public double Hum { get; set; }
     }
     public class Operator
     {

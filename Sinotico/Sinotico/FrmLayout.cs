@@ -755,10 +755,11 @@ namespace Sinotico
                         int.TryParse(dataTbl.Rows[0][2].ToString(), out var machine);
                         var order = dataTbl.Rows[0][3].ToString();
                         var article = dataTbl.Rows[0][4].ToString();
-                        int.TryParse(dataTbl.Rows[0][5].ToString(), out var tmpTeli);
-                        int.TryParse(dataTbl.Rows[0][6].ToString(), out var tmpScarti);
-                        int.TryParse(dataTbl.Rows[0][7].ToString(), out var tmpRammendi);
-                        var sumTeli = 0;
+                        //int.TryParse(dataTbl.Rows[0][5].ToString(), out var tmpTeli);
+                        int.TryParse(dataTbl.Rows[0][5].ToString(), out var tmpScarti);
+                        int.TryParse(dataTbl.Rows[0][6].ToString(), out var tmpRammendi);
+                        DateTime.TryParse(dataTbl.Rows[0][7].ToString(), out var startDate);
+                        //var sumTeli = 0;
                         var sumScarti = 0;
                         var sumRammendi = 0;
                         foreach (DataRow row in dataTbl.Rows)
@@ -768,16 +769,17 @@ namespace Sinotico
                             int.TryParse(row[2].ToString(), out var mac);
                             var ord = row[3].ToString();
                             var art = row[4].ToString();
-                            int.TryParse(row[5].ToString(), out var teli);
-                            int.TryParse(row[6].ToString(), out var scarti);
-                            int.TryParse(row[7].ToString(), out var ramm);
+                            //int.TryParse(row[5].ToString(), out var teli);
+                            int.TryParse(row[5].ToString(), out var scarti);
+                            int.TryParse(row[6].ToString(), out var ramm);
+                            DateTime.TryParse(row[7].ToString(), out var date);
                             if (machine != mac)
                             {
-                                sumTeli += tmpTeli;
+                                //sumTeli += tmpTeli;
                                 sumScarti += tmpScarti;
                                 sumRammendi += tmpRammendi;
-                                _list_of_scarti_rammendi.Add(new ScartiRamendi(machine, sumTeli, sumScarti, sumRammendi));
-                                sumTeli = 0;
+                                _list_of_scarti_rammendi.Add(new ScartiRamendi(machine, 0, sumScarti, sumRammendi));
+                                //sumTeli = 0;
                                 sumScarti = 0;
                                 sumRammendi = 0;
                                 shift = sh;
@@ -785,9 +787,9 @@ namespace Sinotico
                                 order = ord;
                                 article = art;
                             }
-                            if (order != ord || operator_code != operCode || shift != sh || article != art)
+                            if (order != ord || operator_code != operCode || shift != sh || article != art || startDate != date)
                             {
-                                sumTeli += tmpTeli;
+                                //sumTeli += tmpTeli;
                                 sumScarti += tmpScarti;
                                 sumRammendi += tmpRammendi;
                             }
@@ -796,14 +798,15 @@ namespace Sinotico
                             operator_code = operCode;
                             order = ord;
                             article = art;
-                            tmpTeli = teli;
+                            //tmpTeli = teli;
                             tmpRammendi = ramm;
                             tmpScarti = scarti;
+                            startDate = date;
                         }
-                        sumTeli += tmpTeli;
+                        //sumTeli += tmpTeli;
                         sumScarti += tmpScarti;
                         sumRammendi += tmpRammendi;
-                        _list_of_scarti_rammendi.Add(new ScartiRamendi(machine, sumTeli, sumScarti, sumRammendi));
+                        _list_of_scarti_rammendi.Add(new ScartiRamendi(machine, 0, sumScarti, sumRammendi));
                         foreach (DataRow row in qtyTable.Rows)
                         {
                             int.TryParse(row[0].ToString(), out var machineNr);
