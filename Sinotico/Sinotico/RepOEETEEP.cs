@@ -201,6 +201,8 @@ namespace Sinotico
                 double tempoScarti = 0.0;
                 double tempoRammendi = 0.0;
                 double tempoCalendarioTeep = 0.0;
+                double difTpoTpro = 0.0;
+                double totFermate = 0.0;
                 foreach (var uniqueParameters in parameters)
                 {
                     if(!finList.Exists(f => f == uniqueParameters.Finezza))
@@ -228,9 +230,17 @@ namespace Sinotico
                     tempoProdutivo += tmpTempoProdutivo;
                     tempoScarti += tmpTempoScarti;
                     tempoRammendi += tmpTempoRammendi;
-                }           
-                
+                }
+
                 #region firstTablePart
+                //caculate varie 
+                difTpoTpro =tempoPossibile - tempoProdutivo;
+                totFermate = month.CambiOre + month.PuliziaOre + 
+                    month.CampionarioOre + month.CambioAghiOre + month.QualitaFilatoOre + 
+                    month.MaintanceOre + month.RotturaFilatoOre + month.PuliziaFrontureOre + 
+                    month.MeccaniciOre;
+                    month.VarieTOre += (difTpoTpro - totFermate);
+
                 dgvReport.Rows[0].Cells[c].Value = ConvertSecondsToHHmm(tempoPossibile);
                 totalTempoPossibile += tempoPossibile;
                 dgvReport.Rows[1].Cells[c].Value = ConvertSecondsToHHmm(month.CambiOre);
@@ -271,6 +281,7 @@ namespace Sinotico
                 dgvReport.Rows[18].Cells[c].Value = Math.Round((tempoProdutivo / tempoDisponssibile) * 100, 1);
                 dgvReport.Rows[19].Cells[c].Value = quality;
                 dgvReport.Rows[20].Cells[c].Value = qualityTeli;
+               
                 #endregion firstTablePart
                 //row[21] sep row
                 #region secondTablePart

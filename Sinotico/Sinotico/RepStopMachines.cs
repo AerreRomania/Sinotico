@@ -147,44 +147,44 @@ namespace Sinotico
                 newRow[13] = ConvertSecondsToHHmm(Convert.ToInt32(row[7]));
                 newRow[14] = Percentage(row[7]);
 
-                newRow[15] = ConvertSecondsToHHmm(Convert.ToInt32(row[8]));
-                newRow[16] = Percentage(row[8]);
-                newRow[17] = ConvertSecondsToHHmm(Convert.ToInt32(row[9]));
-                newRow[18] = Percentage(row[9]);
-                newRow[19] = ConvertSecondsToHHmm(Convert.ToInt32(row[10]));
-                newRow[20] = Percentage(row[10]);
-                newRow[21] = ConvertSecondsToHHmm(Convert.ToInt32(row[11]));
-                newRow[22] = Percentage(row[11]);
-                newRow[23] = ConvertSecondsToHHmm(Convert.ToInt32(row[12]));
-                newRow[24] = Percentage(row[12]);
-                newRow[25] = ConvertSecondsToHHmm(Convert.ToInt32(row[13]));
-                newRow[26] = Percentage(row[13]);
-                newRow[27] = ConvertSecondsToHHmm(Convert.ToInt32(row[14]));
-                newRow[28] = Percentage(row[14]);
-                newRow[29] = ConvertSecondsToHHmm(Convert.ToInt32(row[15]));
-                newRow[30] = Percentage(row[15]);
-                newRow[31] = ConvertSecondsToHHmm(Convert.ToInt32(row[16]));
-                newRow[32] = Percentage(row[16]);
-                newRow[33] = ConvertSecondsToHHmm(Convert.ToInt32(row[17]));
-                newRow[34] = Percentage(row[17]);
-                newRow[35] = ConvertSecondsToHHmm(Convert.ToInt32(row[18]));
-                newRow[36] = Percentage(row[18]);
-                newRow[37] = ConvertSecondsToHHmm(Convert.ToInt32(row[19]));
-                newRow[38] = Percentage(row[19]);
-                newRow[39] = ConvertSecondsToHHmm(Convert.ToInt32(row[20]));
-                newRow[40] = Percentage(row[20]);
-                newRow[41] = ConvertSecondsToHHmm(Convert.ToInt32(row[21]));
-                newRow[42] = Percentage(row[21]);
-                newRow[43] = ConvertSecondsToHHmm(Convert.ToInt32(row[22]));
-                newRow[44] = Percentage(row[22]);
-                newRow[45] = ConvertSecondsToHHmm(Convert.ToInt32(row[23]));
-                newRow[46] = Percentage(row[23]);
-                newRow[47] = ConvertSecondsToHHmm(Convert.ToInt32(row[24]));
-                newRow[48] = Percentage(row[24]);
-                newRow[49] = ConvertSecondsToHHmm(Convert.ToInt32(row[25]));
-                newRow[50] = Percentage(row[25]);
+                newRow[15] = ConvertSecondsToHHmm(Convert.ToInt32(row[9]));
+                newRow[16] = Percentage(row[9]);
+                newRow[17] = ConvertSecondsToHHmm(Convert.ToInt32(row[10]));
+                newRow[18] = Percentage(row[10]);
+                newRow[19] = ConvertSecondsToHHmm(Convert.ToInt32(row[11]));
+                newRow[20] = Percentage(row[11]);
+                newRow[21] = ConvertSecondsToHHmm(Convert.ToInt32(row[12]));
+                newRow[22] = Percentage(row[12]);
+                newRow[23] = ConvertSecondsToHHmm(Convert.ToInt32(row[13]));
+                newRow[24] = Percentage(row[13]);
+                newRow[25] = ConvertSecondsToHHmm(Convert.ToInt32(row[14]));
+                newRow[26] = Percentage(row[14]);
+                newRow[27] = ConvertSecondsToHHmm(Convert.ToInt32(row[15]));
+                newRow[28] = Percentage(row[15]);
+                newRow[29] = ConvertSecondsToHHmm(Convert.ToInt32(row[16]));
+                newRow[30] = Percentage(row[16]);
+                newRow[31] = ConvertSecondsToHHmm(Convert.ToInt32(row[17]));
+                newRow[32] = Percentage(row[17]);
+                newRow[33] = ConvertSecondsToHHmm(Convert.ToInt32(row[18]));
+                newRow[34] = Percentage(row[18]);
+                newRow[35] = ConvertSecondsToHHmm(Convert.ToInt32(row[19]));
+                newRow[36] = Percentage(row[19]);
+                newRow[37] = ConvertSecondsToHHmm(Convert.ToInt32(row[20]));
+                newRow[38] = Percentage(row[20]);
+                newRow[39] = ConvertSecondsToHHmm(Convert.ToInt32(row[21]));
+                newRow[40] = Percentage(row[21]);
+                newRow[41] = ConvertSecondsToHHmm(Convert.ToInt32(row[22]));
+                newRow[42] = Percentage(row[22]);
+                newRow[43] = ConvertSecondsToHHmm(Convert.ToInt32(row[23]));
+                newRow[44] = Percentage(row[23]);
+                newRow[45] = ConvertSecondsToHHmm(Convert.ToInt32(row[24]));
+                newRow[46] = Percentage(row[24]);
+                newRow[47] = ConvertSecondsToHHmm(Convert.ToInt32(row[25]));
+                newRow[48] = Percentage(row[25]);
+                newRow[49] = ConvertSecondsToHHmm(Convert.ToInt32(row[26]));
+                newRow[50] = Percentage(row[26]);
 
-                for (var i = 1; i <= 25; i++)
+                for (var i = 1; i <= 26; i++)
                 {
                     int.TryParse(row[i].ToString(), out int obj);
                     timeTot += obj;
@@ -192,7 +192,7 @@ namespace Sinotico
 
                 newRow[51] = ConvertSecondsToHHmm(timeTot);
                 newRow[52] = Percentage(timeTot);
-                double.TryParse(row[26].ToString(), out var tessituraTime);
+                double.TryParse(row[27].ToString(), out var tessituraTime);
                 var diff = totAvailableTime - tessituraTime;
                 int.TryParse(diff.ToString(), out var differenza);
                 newRow[53] = ConvertSecondsToHHmm(differenza);
@@ -216,7 +216,7 @@ namespace Sinotico
             string[] _columnHeaders = new string[] { "PETTINE", "MANUALE", "FILATO", "AGHI", "URTO", "PRINCIPALE", "ALTRO", "CHANGE STYLE",
                                                   "CHANGE COLOR", "MC BREAKDOWN",  "YARN DELAY", "YARN QUALITY", "TECHNIQUE", "MAINTENANCE",
                                                   "ORDER SHORT", "CAMBIO TAGLIA", "PREPRODUZIONE", "SVILUPOTAGLIE", "PROTOTIPO", "CAMPIONARIO",
-                                                  "RIPARAZIONI", "CAMBIO ART.", "PULIZIA ORDINE", "PULIZIA FRONTURE", "TOTALI"};
+                                                  "RIPARAZIONI", "ATTREZZAGGIO", "PULIZIA ORDINE", "PULIZIA FRONTURE", "TOTALI"};
 
 
             var position = 0;
@@ -281,42 +281,50 @@ namespace Sinotico
 
         private void CalculateTotals()
         {
+            try {
             var activeMachines = dgvReport.Rows.Count - 2;
-            for(var c = 1; c < dgvReport.Columns.Count; c++)
-            {
-                var totalEff = 0.0;
-                long totalPercEff = 0;
-                for(var r = 2; r < dgvReport.Rows.Count; r++)
+                for (var c = 1; c < dgvReport.Columns.Count; c++)
                 {
-                    if(c % 2 == 0)
+                    var totalEff = 0.0;
+                    long totalPercEff = 0;
+                    for (var r = 2; r < dgvReport.Rows.Count; r++)
                     {
-                        double.TryParse(dgvReport.Rows[r].Cells[c].Value.ToString(), out var eff);
-                        totalEff += eff;
+                        if (c % 2 == 0)
+                        {
+                            double.TryParse(dgvReport.Rows[r].Cells[c].Value.ToString(), out var eff);
+                            totalEff += eff;
+                        }
+                        else
+                        {
+                            int.TryParse(dgvReport.Rows[r].Cells[c].Value.ToString().Split(':')[0], out var hrs);
+                            int.TryParse(dgvReport.Rows[r].Cells[c].Value.ToString().Split(':')[1], out var mins);
+                            TimeSpan ts = new TimeSpan(hrs, mins, 0);
+                            totalPercEff += ts.Ticks;
+                        }
+                    }
+                    if (c % 2 == 0 && c < dgvReport.Columns.Count - 1)
+                    {
+                        dgvReport.Rows[0].Cells[c].Value = Math.Round(totalEff / activeMachines, 1).ToString();
+                    }
+                    else if (c % 2 == 1 && c < dgvReport.Columns.Count - 1)
+                    {
+                        var t = TimeSpan.FromTicks(totalPercEff);
+                        int.TryParse(t.TotalSeconds.ToString(), out var secs);
+                        dgvReport.Rows[0].Cells[c].Value = ConvertSecondsToHHmm(secs);
                     }
                     else
                     {
-                        int.TryParse(dgvReport.Rows[r].Cells[c].Value.ToString().Split(':')[0], out var hrs);
-                        int.TryParse(dgvReport.Rows[r].Cells[c].Value.ToString().Split(':')[1], out var mins);
-                        TimeSpan ts = new TimeSpan(hrs, mins, 0);
-                        totalPercEff += ts.Ticks;
+                        var t = TimeSpan.FromTicks(totalPercEff);
+                        int.TryParse(t.TotalSeconds.ToString(), out var secs);
+                        dgvReport.Rows[0].Cells[c].Value = ConvertSecondsToHHmm(secs / activeMachines);
                     }
                 }
-                if(c % 2 == 0 && c < dgvReport.Columns.Count - 1)
-                {
-                    dgvReport.Rows[0].Cells[c].Value = Math.Round(totalEff / activeMachines, 1).ToString();
-                }
-                else if(c % 2 == 1 && c < dgvReport.Columns.Count - 1)
-                {
-                    var t = TimeSpan.FromTicks(totalPercEff);
-                    int.TryParse(t.TotalSeconds.ToString(), out var secs);
-                    dgvReport.Rows[0].Cells[c].Value = ConvertSecondsToHHmm(secs);
-                }
-                else
-                {
-                    var t = TimeSpan.FromTicks(totalPercEff);
-                    int.TryParse(t.TotalSeconds.ToString(), out var secs);
-                    dgvReport.Rows[0].Cells[c].Value = ConvertSecondsToHHmm(secs / activeMachines);
-                }
+               
+            }
+            catch (Exception ex)
+            {
+                LoadingInfo.CloseLoading();
+                MessageBox.Show("You encountered an exception: " + ex, "Error.");
             }
         }
 
@@ -344,7 +352,7 @@ namespace Sinotico
                 for (var r = 2; r <= dgvReport.Rows.Count - 1; r++)
                     {
                     double.TryParse(dgvReport.Rows[r].Cells[i].Value.ToString(), out var eff);
-
+                    
                     sum += eff;
                     }
 
@@ -470,7 +478,7 @@ namespace Sinotico
                 }
                 else if (c == 22)
                 {
-                    headtxt = "CAMBIO ART.";
+                    headtxt = "ATTREZZAGGIO";
                 }
                 else if (c == 23)
                 {
@@ -485,9 +493,13 @@ namespace Sinotico
                     headtxt = "CAMBIO AGHI";
                 }
 
-                if (c <= 25)
+                if (c <= 15)
                 {
                     headclr = Color.OldLace;
+                }
+                else if(c>15 && c<=25)
+                {
+                    headclr = Color.LightSteelBlue;
                 }
                 else
                 {

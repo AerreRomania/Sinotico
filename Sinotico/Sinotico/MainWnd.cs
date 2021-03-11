@@ -20,7 +20,7 @@ namespace Sinotico
     public partial class MainWnd : Form
     {
         //public static string conString = "Data Source=DESKTOP-Q24FF5A;Initial Catalog=Sinotico;Integrated Security=SSPI;"; //Nikola
-        public static string conString = "Data Source = 192.168.96.17; Initial Catalog = Sinotico; user=sa;password=onlyouolimpias;"; //Server
+        public static string conString = "Data Source = 192.168.96.17; Initial Catalog = Sinotico_Serbia; user=sa;password=onlyouolimpias;"; //Server
         //public static string conString = "Data Source=KNSQL2014;Initial Catalog=Sinotico;Integrated Security=SSPI"; //Unused
         public static string conStringOY = "Data Source = 192.168.96.37; Initial Catalog = ONLYOU; user=sa;password=olimpiasknitting;";
         public static SqlConnection _sql_con = new SqlConnection(conString);
