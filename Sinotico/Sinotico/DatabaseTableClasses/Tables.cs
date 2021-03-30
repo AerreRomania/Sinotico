@@ -12,5 +12,6 @@ namespace Sinotico.DatabaseTableClasses
         public static Table<Holidays> TblHolidays => FrmHolidays.dc.GetTable<Holidays>();
         public static Table<EfficiencyBounds> TblEfficiencyBounds => FrmHolidays.dc.GetTable<EfficiencyBounds>();
         public static Table<MonthTrash> TblMonthTrash => FrmHolidays.dc.GetTable<MonthTrash>();
+        public static Table<IntensityBounds> TblIntensity => FrmHolidays.dc.GetTable<IntensityBounds>();
     }
 }

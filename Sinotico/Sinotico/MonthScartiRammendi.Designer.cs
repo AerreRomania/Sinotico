@@ -43,6 +43,8 @@
             this.tbProdutivo = new System.Windows.Forms.TextBox();
             this.btnChange = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tbTempoCalendarioTEEP = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.cbFinezza = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -50,8 +52,6 @@
             this.tbFermataStraiordinaria = new System.Windows.Forms.TextBox();
             this.tbMancanzaLavoro = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.tbTempoCalendarioTEEP = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMonth)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -74,13 +74,15 @@
             this.dtpMonth.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
             this.dtpMonth.CalendarTitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
             this.dtpMonth.CalendarTrailingForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.dtpMonth.CustomFormat = "MM/yyyy";
+            this.dtpMonth.CustomFormat = "yyyy";
             this.dtpMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpMonth.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpMonth.Location = new System.Drawing.Point(141, 47);
             this.dtpMonth.Name = "dtpMonth";
+            this.dtpMonth.ShowUpDown = true;
             this.dtpMonth.Size = new System.Drawing.Size(148, 26);
             this.dtpMonth.TabIndex = 1;
+            this.dtpMonth.ValueChanged += new System.EventHandler(this.dtpMonth_ValueChanged);
             // 
             // tbScarti
             // 
@@ -112,9 +114,9 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
             this.label1.Location = new System.Drawing.Point(8, 57);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 13);
+            this.label1.Size = new System.Drawing.Size(29, 13);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Month";
+            this.label1.Text = "Year";
             // 
             // label2
             // 
@@ -139,27 +141,31 @@
             // btnInsert
             // 
             this.btnInsert.BackColor = System.Drawing.Color.White;
-            this.btnInsert.BackgroundImage = global::Sinotico.Properties.Resources.parameters_insert_40;
             this.btnInsert.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnInsert.FlatAppearance.BorderSize = 0;
             this.btnInsert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInsert.Location = new System.Drawing.Point(80, 388);
+            this.btnInsert.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInsert.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnInsert.Location = new System.Drawing.Point(107, 411);
             this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(50, 50);
+            this.btnInsert.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnInsert.Size = new System.Drawing.Size(50, 27);
             this.btnInsert.TabIndex = 7;
+            this.btnInsert.Text = "Save";
             this.btnInsert.UseVisualStyleBackColor = false;
             // 
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.Color.White;
-            this.btnDelete.BackgroundImage = global::Sinotico.Properties.Resources.parameters_delet_40;
             this.btnDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnDelete.FlatAppearance.BorderSize = 0;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Location = new System.Drawing.Point(239, 388);
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Location = new System.Drawing.Point(219, 411);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(50, 50);
+            this.btnDelete.Size = new System.Drawing.Size(70, 27);
             this.btnDelete.TabIndex = 8;
+            this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = false;
             // 
             // label4
@@ -209,14 +215,15 @@
             // btnChange
             // 
             this.btnChange.BackColor = System.Drawing.Color.White;
-            this.btnChange.BackgroundImage = global::Sinotico.Properties.Resources.parameters_edit_40;
             this.btnChange.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnChange.FlatAppearance.BorderSize = 0;
             this.btnChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChange.Location = new System.Drawing.Point(163, 388);
+            this.btnChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChange.Location = new System.Drawing.Point(163, 411);
             this.btnChange.Name = "btnChange";
-            this.btnChange.Size = new System.Drawing.Size(50, 50);
+            this.btnChange.Size = new System.Drawing.Size(50, 27);
             this.btnChange.TabIndex = 13;
+            this.btnChange.Text = "Edit";
             this.btnChange.UseVisualStyleBackColor = false;
             // 
             // panel1
@@ -248,6 +255,28 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(305, 450);
             this.panel1.TabIndex = 14;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.label10.Location = new System.Drawing.Point(8, 315);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(123, 13);
+            this.label10.TabIndex = 23;
+            this.label10.Text = "Tempo calendario TEEP";
+            // 
+            // tbTempoCalendarioTEEP
+            // 
+            this.tbTempoCalendarioTEEP.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbTempoCalendarioTEEP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbTempoCalendarioTEEP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.tbTempoCalendarioTEEP.Location = new System.Drawing.Point(141, 310);
+            this.tbTempoCalendarioTEEP.Multiline = true;
+            this.tbTempoCalendarioTEEP.Name = "tbTempoCalendarioTEEP";
+            this.tbTempoCalendarioTEEP.Size = new System.Drawing.Size(148, 26);
+            this.tbTempoCalendarioTEEP.TabIndex = 22;
+            this.tbTempoCalendarioTEEP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label9
             // 
@@ -326,28 +355,6 @@
             this.label8.Size = new System.Drawing.Size(43, 13);
             this.label8.TabIndex = 15;
             this.label8.Text = "Finezza";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.label10.Location = new System.Drawing.Point(8, 315);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(123, 13);
-            this.label10.TabIndex = 23;
-            this.label10.Text = "Tempo calendario TEEP";
-            // 
-            // tbTempoCalendarioTEEP
-            // 
-            this.tbTempoCalendarioTEEP.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbTempoCalendarioTEEP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbTempoCalendarioTEEP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.tbTempoCalendarioTEEP.Location = new System.Drawing.Point(141, 310);
-            this.tbTempoCalendarioTEEP.Multiline = true;
-            this.tbTempoCalendarioTEEP.Name = "tbTempoCalendarioTEEP";
-            this.tbTempoCalendarioTEEP.Size = new System.Drawing.Size(148, 26);
-            this.tbTempoCalendarioTEEP.TabIndex = 22;
-            this.tbTempoCalendarioTEEP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // MonthScartiRammendi
             // 

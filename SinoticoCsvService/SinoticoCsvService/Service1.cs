@@ -9,6 +9,7 @@ namespace SinoticoCsvService
         /* CsvLibExpress*/
         private readonly CsvLib Lib = new CsvLib();
         private readonly Log Log = new Log();
+        private readonly CsvRammendi Ram = new CsvRammendi();
 
         private Timer _timer = new Timer();
 
@@ -54,6 +55,7 @@ namespace SinoticoCsvService
         private void _timer_Tick(object sender, ElapsedEventArgs elapsed)
             {
             Lib.ExtractMyFile();
+            Ram.SendFileToDb();
             }
         }
     }

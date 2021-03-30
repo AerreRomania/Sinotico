@@ -1,7 +1,4 @@
-﻿/*=============== EXTRACT .CSV FILE TO SQL TABLE ==============*/
-/*=============================================================*/
-
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
@@ -14,34 +11,31 @@ namespace CsvLibExpress
         /// <summary>
         /// The original directory of SPR3
         /// </summary>
-        private string _originalStorePath = "\\\\192.168.96.7\\c$\\SPR3-PLM\\SPR3_REPORT";
-
-        //or use verbatim string \\192.168.96.7\c$\SPR3-PLM\SPR3_REPORT
+        private string _originalStorePath = "\\\\192.168.96.7\\c$\\Report SHIMA"; //olimpias knitting
+        //private string _originalStorePath = "\\\\192.168.114.6\\d$\\Report"; // olimpias serbia
+        //\\192.168.96.7\c$\Report SHIMA 
+        //\\192.168.96.7\\c$\\SPR3-PLM\\SPR3_REPORT
         /// <summary>
         /// Startup directory of the service store
         /// </summary>
         private string _myStorePath = AppDomain.CurrentDomain.BaseDirectory + "csv_store"; //= "D:\\Sinotico\\extractor\\csv_store";
-
         /// <summary>
         /// The target prefix of the target file
         /// </summary>
-        private string _targetPrefix = "PR";  //old uspx: PW
-
+        private readonly string _targetPrefix = "PR";  //old uspx: PW       
         /// <summary>
         /// File that will be extracted.
         /// </summary>
         private string MyFile;
-
         /// <summary>
         /// Gets or sets the context.
         /// </summary>
         /// <value>
         /// Connection string.
         /// </value>
+        //public string Context { get; set; } = "Data Source=KNSQL2014;Initial Catalog=Sinotico_Serbia;Integrated Security=SSPI";
         public string Context { get; set; } = "Data Source=KNSQL2014;Initial Catalog=Sinotico;Integrated Security=SSPI";
-
         private readonly Log log = new Log();
-
         /// <summary>
         /// Populates the data table using CSV format.
         /// </summary>
@@ -67,7 +61,7 @@ namespace CsvLibExpress
                     // Creates datatable columns from CSV file
                     foreach (string header in headers)
                         dataTable.Columns.Add(header);
-                    //extra columns after orginial CSV
+                    //extra columns upgraded to original
                     dataTable.Columns.Add("part");
                     dataTable.Columns.Add("size");
                     dataTable.Columns.Add("color");
@@ -79,7 +73,9 @@ namespace CsvLibExpress
                         var newRow = dataTable.NewRow();
                         for (int i = 0; i < headers.Length; i++)
                         {
-                            if (i == 24)
+                            if (i == 17)
+                                newRow[17] = GetShiftName(rows[17].ToString());
+                            else if (i == 24)
                                 newRow[24] = GetFilename(rows[24].ToString(), 3, false);
                             else
                             //insert original values in string
@@ -96,18 +92,15 @@ namespace CsvLibExpress
                 }
             }
         }
-
         private void TryToCreateClonedStore()
         {
             // Creates directory for CSV files
             if (!Directory.Exists(_myStorePath))
                 Directory.CreateDirectory(_myStorePath);
         }
-
         public void ExtractMyFile()
         {
             TryToCreateClonedStore();   //TODO -> Check memory and time usage to perform this method every time
-
             try
             {
                 foreach (var file in Directory.GetFiles(_originalStorePath))
@@ -123,9 +116,8 @@ namespace CsvLibExpress
                     // Gets the file name
                     var myFileName = Path.GetFileName(MyFile); //MyFile.Split('\\').Last();
                     if (File.Exists(MyFile)) continue;
-                    var sourceFileName = Path.Combine(_originalStorePath, originalFileName);
+                    var sourceFileName = Path.Combine(_originalStorePath, originalFileName);                
                     File.Copy(sourceFileName, MyFile, true);
-
                     var startTime = DateTime.Now;
                     var con = new SqlConnection(Context);
                     var cmd = new SqlCommand();
@@ -151,9 +143,7 @@ namespace CsvLibExpress
                     cmd.ExecuteNonQuery();
                     con.Close();
                     cmd = null;
-
                     log.WriteLog(message: myFileName + " Status: Sent over filestream");
-
                     //
                     // Copy datatable content to database table
                     //
@@ -162,6 +152,14 @@ namespace CsvLibExpress
                     using (var sbc = new SqlBulkCopy(con))
                     {
                         sbc.DestinationTableName = "csv_history";
+                        con.Open();
+                        sbc.WriteToServer(csvDataTable, DataRowState.Added);
+                        con.Close();
+                        sbc.Close();
+                    }
+                    using (var sbc = new SqlBulkCopy(con))
+                    {
+                        sbc.DestinationTableName = "csv_extend";
                         con.Open();
                         sbc.WriteToServer(csvDataTable, DataRowState.Added);
                         con.Close();
@@ -184,7 +182,6 @@ namespace CsvLibExpress
                         con.Close();
                         sbc.Close();
                     }
-
                     // Writes last extracted file status
                     var endTime = DateTime.Now;
                     var ms = endTime.Subtract(startTime).TotalMilliseconds;
@@ -192,35 +189,41 @@ namespace CsvLibExpress
                         myFileName
                         + " Status: Accepted; Estimated time: "
                         + ms.ToString() + "ms");
+
+                    /*Now extract scarti & rammendi csv file*/
+
+                    //var endTimeRamm = DateTime.Now;
+                    //ms = endTimeRamm.Subtract(endTime).TotalMilliseconds;
+                    //var csvRamm = new CsvRammendi();
+                    //csvRamm.SendFileToDb();
+                    //log.WriteLog(message: "Status: Scarti-rammendi accepted; Estimated time: " + 
+                    //    ms.ToString() + "ms");
+                    
+                    //var _HumidityTemperature = new TemperatureExtractor();
+                    //_HumidityTemperature.InsertNewRecords();
                 }
             }
-            catch (UnauthorizedAccessException uex)
+            catch (UnauthorizedAccessException unex)
             {
-                log.WriteLog(message: "! Deny " + uex.Message);
+                log.WriteLog(message: "! Deny " + unex.Message);
             }
             catch (Exception ex)
             {
                 log.WriteLog(message: "! Deny " + ex.Message);
             }
         }
-
         #region WorkWithFileName
-
         private bool CompareFileNameFormat(string txt)
         {
-            var reg = "(.*?)(-)(.*?)(-)(.*?)(-)(.*?)(\\.)(.)(.)(.)";    //default pattern
-
+            var reg = "(.*?)(-)(.*?)(-)(.*?)(-)(.*?)(\\.)(.)(.)(.)";
             var r = new Regex(reg,
                 RegexOptions.IgnoreCase | RegexOptions.Singleline);
-
             var m = r.Match(txt);
-
             if (m.Success)
                 return true;
             else
                 return false;
         }
-
         private string GetFilename(string text, int seq, bool showError)
         {
             var formatCorrect = CompareFileNameFormat(text);
@@ -241,6 +244,23 @@ namespace CsvLibExpress
                 else
                     return text.Split('-')[seq];
             }
+        }
+        public string GetShiftName(string shift)
+        {
+            var str = "";
+            switch (shift)
+            {
+                case "TURNO1":
+                    str = "NIGHT";
+                    break;
+                case "TURNO2":
+                    str = "MORNING";
+                    break;
+                case "TURNO3":
+                    str = "AFTERNOON";
+                    break;
+            }
+            return str;
         }
     }
 

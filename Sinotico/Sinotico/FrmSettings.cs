@@ -20,6 +20,7 @@ namespace Sinotico
         private ToolTip _toolTip = new ToolTip();
         private bool _hasNewUpdate = false;
         private System.Threading.Timer _tmCheck;
+        private IntensityBounds currIntesity = new IntensityBounds();
 
         public FrmSettings()
         {           
@@ -46,6 +47,8 @@ namespace Sinotico
 
             cbUpdateRuntime.Checked = Properties.Settings.Default.checkUpdates;
             txtDownloadSource.Text = Properties.Settings.Default.downloadSource;
+            Intensity_slider.Value = currIntesity.Value;
+            intensity_label.Text = "Selected intesity: "+Intensity_slider.Value.ToString();
 
             //var pathMain = AppDomain.CurrentDomain.BaseDirectory;            
             //var strAssembOld = "";
@@ -278,6 +281,9 @@ namespace Sinotico
             var data = (from records in Tables.TblEfficiencyBounds
                         select records).ToList();
             dgvSettings.DataSource = data;
+            var intesinty = (from intesities in Tables.TblIntensity select intesities).FirstOrDefault();
+            currIntesity = intesinty;
+
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -348,6 +354,36 @@ namespace Sinotico
         {
             Properties.Settings.Default.checkUpdates = ((CheckBox)sender).Checked;
             Properties.Settings.Default.Save();
+        }
+
+        private void btn_save_Click(object sender, EventArgs e)
+        {
+            FrmHolidays.dc = new DataContext(MainWnd.conString);
+           
+                var record = (from intens in Tables.TblIntensity
+                              where intens.Id == currIntesity.Id
+                              select intens).SingleOrDefault();
+            record.Type = currIntesity.Type;
+            record.Value = Intensity_slider.Value;
+            FrmHolidays.dc.SubmitChanges();
+            
+            LoadData();
+        }
+        private bool block = false;
+        private int sliderValue = 50;
+        private int step = 25;
+        private void Intensity_slider_ValueChanged(object sender, EventArgs e)
+        {
+            if (block) return;
+            sliderValue = Intensity_slider.Value;
+            if (sliderValue % step != 0)
+            { 
+                sliderValue = (sliderValue / step) * step;
+                block = true;
+                Intensity_slider.Value = sliderValue;
+                block = false;
+            }
+            intensity_label.Text ="Selected intesity: "+ Intensity_slider.Value.ToString();
         }
     }
 }

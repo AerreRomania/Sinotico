@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Linq;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace Sinotico
     {
         private int _selectedRow = 0;
         private ToolTip _infoTT = new ToolTip();
+        private int month = 0;
 
         public MonthScartiRammendi()
         {
@@ -30,7 +32,7 @@ namespace Sinotico
         #region Functions
         private DateTime Get_Date()
         {
-            return new DateTime(dtpMonth.Value.Year, dtpMonth.Value.Month, 1);
+            return new DateTime(dtpMonth.Value.Year, month, 1);
         }
         private int Get_Scarti()
         {
@@ -83,58 +85,112 @@ namespace Sinotico
         private void CustomizeDataGridView(DataGridView dgv)
         {
             dgv.DoubleBufferedDataGridView(true);
+
             dgv.DataBindingComplete += delegate
             {
-                dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                dgv.ReadOnly = true;
-                dgv.AllowUserToAddRows = false;
-                dgv.AllowUserToDeleteRows = false;
-                dgv.AllowUserToOrderColumns = false;
-                dgv.AllowUserToResizeColumns = false;
-                dgv.AllowUserToResizeRows = false;
-                dgv.RowHeadersVisible = false;
-                dgv.EnableHeadersVisualStyles = false;
-                dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                foreach (DataGridViewColumn col in dgv.Columns)
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.ReadOnly = true;
+            dgv.AllowUserToAddRows = false;
+            dgv.AllowUserToDeleteRows = false;
+            dgv.AllowUserToOrderColumns = false;
+            dgv.AllowUserToResizeColumns = false;
+            dgv.AllowUserToResizeRows = false;
+            dgv.RowHeadersVisible = false;
+            dgv.EnableHeadersVisualStyles = false;
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            
+
+            foreach (DataGridViewColumn col in dgvMonth.Columns)
+            {
+                col.HeaderText = "\n" + col.Name.Substring(0, 1).ToUpper() + col.Name.Remove(0, 1) + "\n";
+                col.DefaultCellStyle.BackColor = Color.White;//Color.FromArgb(255, 255, 203);
+                col.HeaderCell.Style.BackColor = Color.FromArgb(112, 173, 71);//Color.FromArgb(192, 192, 192);    
+                if (col.Name == "FermataStraordinaria")
                 {
-                    col.HeaderText = "\n" + col.Name.Substring(0, 1).ToUpper() + col.Name.Remove(0, 1) + "\n";
-                    col.DefaultCellStyle.BackColor = Color.White;//Color.FromArgb(255, 255, 203);
-                    col.HeaderCell.Style.BackColor = Color.FromArgb(112, 173, 71);//Color.FromArgb(192, 192, 192);    
-                    if( col.Name == "FermataStraordinaria")
-                    {
-                        col.Width = 110;
-                    }
-                    else if (col.Name == "MancanzaLavoro" || col.Name == "ConsiderateMac" ||
-                             col.Name == "CalendarioTEEP")
-                    {
-                        col.Width = 90;
-                    }
-                    else if (col.Name == "Finezza")
-                    {
-                        col.Width = 50;
-                    }
-                    else
-                    {
-                        col.Width = 65;
-                    }
-                    col.SortMode = DataGridViewColumnSortMode.NotSortable;
-                    col.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                    col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    
-                    col.HeaderCell.Style.ForeColor = Color.White;
-                    col.HeaderCell.Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Regular);
-                    col.DefaultCellStyle.ForeColor = Color.FromArgb(70, 70, 70);
-                }              
-            };
+                    col.Width = 110;
+                }
+                else if (col.Name == "MancanzaLavoro" || col.Name == "ConsiderateMac" ||
+                         col.Name == "CalendarioTEEP")
+                {
+                    col.Width = 90;
+                }
+                else if (col.Name == "Finezza")
+                {
+                    col.Width = 50;
+                }
+                else
+                {
+                    col.Width = 65;
+                }
+                col.SortMode = DataGridViewColumnSortMode.NotSortable;
+                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                col.HeaderCell.Style.ForeColor = Color.White;
+                col.HeaderCell.Style.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Regular);
+                col.DefaultCellStyle.ForeColor = Color.FromArgb(70, 70, 70);
+            }
+                         
+           };
         }
         private void LoadRecords()
         {
-            var records = (from r in Tables.TblMonthTrash
+            DataTable tmp = new DataTable();
+            var records = (from r in Tables.TblMonthTrash where r.Date.Year == dtpMonth.Value.Year
                            select r).ToList();
-            dgvMonth.DataSource = records;
+
+
+            tmp.Columns.Add("Date");//0
+            tmp.Columns.Add("Scarti");//1
+            tmp.Columns.Add("Rammendi");//2
+            tmp.Columns.Add("Produtivo");//3
+            tmp.Columns.Add("ConsiderateMac");//4
+            tmp.Columns.Add("Finezza");//5
+            tmp.Columns.Add("MancanzaLavoro");//6
+            tmp.Columns.Add("FermataStraordinaria");//7
+            tmp.Columns.Add("CalendarioTEEP");//8
+            tmp.Columns.Add("Id");//9
+            tmp.Columns.Add("DatePicker");//10
+            for (int i = 1; i <= 12; i++)
+            {
+                tmp.Rows.Add(new DateTime(dtpMonth.Value.Year, i, 1).ToString("MMM") + "-3");
+                tmp.Rows.Add(new DateTime(dtpMonth.Value.Year, i, 1).ToString("MMM") + "-7");
+                tmp.Rows.Add(new DateTime(dtpMonth.Value.Year, i, 1).ToString("MMM") + "-14");
+            }
+
+            for (int i = 0; i <= tmp.Rows.Count - 1; i++) // row in dgvMonth.Rows)
+            {
+                DataRow row = tmp.Rows[i];
+                string dgvKey = string.Empty;
+                if (row[0]!=null)  dgvKey = row[0].ToString();
+
+
+                foreach (var item in records)
+                {
+
+                    if(dgvKey==(item.Date.ToString("MMM")+"-"+item.Finezza).ToString())
+                    {
+                        row[10] = item.Date;
+                        row[9] = item.Id;
+                        row[0] = dgvKey;
+                        row[1] = item.Scarti;
+                        row[2] = item.Rammendi;
+                        row[3] = item.Produtivo;
+                        row[4] = item.ConsiderateMac;
+                        row[5]= item.Finezza;
+                        row[6] = item.MancanzaLavoro;
+                        row[7] = item.FermataStraordinaria;
+                        row[8] = item.CalendarioTEEP;
+                    }
+                }
+            }
+            dgvMonth.DataSource = tmp;
             dgvMonth.Columns["Id"].Visible = false;
+            //dgvMonth.Columns["DatePicker"].Visible = false;
+
         }
+
 
         private bool Insertion()
         {
@@ -171,7 +227,7 @@ namespace Sinotico
             {
                 return false;
             }            
-            var selectedRowId = dgvMonth.SelectedRows[0].Cells[0].Value.ToString();
+            var selectedRowId = dgvMonth.SelectedRows[0].Cells[9].Value.ToString();
             int.TryParse(selectedRowId, out var id);
             FrmHolidays.dc = new DataContext(MainWnd.conString);
             var itemToDelete = (from record in Tables.TblMonthTrash
@@ -196,48 +252,59 @@ namespace Sinotico
         private bool Change()
         {
             if(dgvMonth.DataSource == null ||
-               dgvMonth.Rows.Count <= 0 || EmptyFields())
+               dgvMonth.Rows.Count <= 0 || 
+               EmptyFields())
+
+
             {
                 return false;
             }
-            var selectedRowId = dgvMonth.SelectedRows[0].Cells[0].Value.ToString();
-            var selectedRowDate = dgvMonth.SelectedRows[0].Cells[1].Value.ToString();
+            var selectedRowId = dgvMonth.SelectedRows[0].Cells[9].Value.ToString();
+            var selectedRowDate = dgvMonth.SelectedRows[0].Cells[10].Value.ToString();
             int.TryParse(selectedRowId, out var id);
             DateTime.TryParse(selectedRowDate, out var date);
-            FrmHolidays.dc = new DataContext(MainWnd.conString);
-            var itemToChange = (from record in Tables.TblMonthTrash
-                                where record.Id == id
-                                select record).SingleOrDefault();
-            var existingDates = (from record in Tables.TblMonthTrash
-                                 where record.Date != date
-                                 select record.Date).ToList();
-            if (existingDates.Exists(d => d == Get_Date()))
+            if (date == new DateTime(1,1,1))
             {
+                MessageBox.Show("Please click on the insert button.", "Error!");
                 return false;
-            }
-            itemToChange.Date = Get_Date();
-            itemToChange.Scarti = Get_Scarti();
-            itemToChange.Rammendi = Get_Rammendi();
-            itemToChange.Produtivo = Get_Produtivo();
-            itemToChange.ConsiderateMac = Get_ConsiderateMachines();
-            itemToChange.Finezza = Get_Finezza();
-            itemToChange.MancanzaLavoro = Get_MancanzaLavoro();
-            itemToChange.FermataStraordinaria = Get_FermataStraordinaria();
-            itemToChange.CalendarioTEEP = Get_TcTeep();
-            var dialogResult = MessageBox.Show("Are you sure you want to edit selected item?",
-                               "Change",
-                               MessageBoxButtons.YesNo,
-                               MessageBoxIcon.Question);
-            if (dialogResult == DialogResult.Yes)
-            {
-                FrmHolidays.dc.SubmitChanges();
-                LoadRecords();
-                return true;
             }
             else
             {
-                return true;
-            }            
+                FrmHolidays.dc = new DataContext(MainWnd.conString);
+                var itemToChange = (from record in Tables.TblMonthTrash
+                                    where record.Id == id
+                                    select record).SingleOrDefault();
+                var existingDates = (from record in Tables.TblMonthTrash
+                                     where record.Date != date
+                                     select record.Date).ToList();
+                if (existingDates.Exists(d => d == Get_Date()))
+                {
+                    return false;
+                }
+                itemToChange.Date = Get_Date();
+                itemToChange.Scarti = Get_Scarti();
+                itemToChange.Rammendi = Get_Rammendi();
+                itemToChange.Produtivo = Get_Produtivo();
+                itemToChange.ConsiderateMac = Get_ConsiderateMachines();
+                itemToChange.Finezza = Get_Finezza();
+                itemToChange.MancanzaLavoro = Get_MancanzaLavoro();
+                itemToChange.FermataStraordinaria = Get_FermataStraordinaria();
+                itemToChange.CalendarioTEEP = Get_TcTeep();
+                var dialogResult = MessageBox.Show("Are you sure you want to edit selected item?",
+                                   "Change",
+                                   MessageBoxButtons.YesNo,
+                                   MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    FrmHolidays.dc.SubmitChanges();
+                    LoadRecords();
+                    return true;
+                }
+                else
+                {
+                    return true;
+                }
+            }
         }
 
         private void SetupToolTip(ToolTip info)
@@ -278,16 +345,20 @@ namespace Sinotico
             else
             {
                 _selectedRow = dgvMonth.CurrentCell.RowIndex;
-                DateTime.TryParse(dgvMonth.Rows[_selectedRow].Cells[1].Value.ToString(), out var date);
-                dtpMonth.Value = date;
-                tbScarti.Text = dgvMonth.Rows[_selectedRow].Cells[2].Value.ToString();
-                tbRammendi.Text = dgvMonth.Rows[_selectedRow].Cells[3].Value.ToString();
-                tbProdutivo.Text = dgvMonth.Rows[_selectedRow].Cells[4].Value.ToString();
-                tbMacConsiderate.Text = dgvMonth.Rows[_selectedRow].Cells[5].Value.ToString();
-                cbFinezza.Text = dgvMonth.Rows[_selectedRow].Cells[6].Value.ToString();
-                tbMancanzaLavoro.Text = dgvMonth.Rows[_selectedRow].Cells[7].Value.ToString();
-                tbFermataStraiordinaria.Text = dgvMonth.Rows[_selectedRow].Cells[8].Value.ToString();
-                tbTempoCalendarioTEEP.Text = dgvMonth.Rows[_selectedRow].Cells[9].Value.ToString();
+                DateTime.TryParse(dgvMonth.Rows[_selectedRow].Cells[10].Value.ToString(), out var date);
+                month= DateTime.ParseExact(dgvMonth.Rows[_selectedRow].Cells[0].Value.ToString().Substring(0, 3),"MMM", CultureInfo.CurrentCulture).Month ;
+                //if (date != new DateTime(1, 1, 1)) dtpMonth.Value = date;
+                //else dtpMonth.Value = new DateTime(dtpMonth.Value.Year, month, 1);
+
+                tbScarti.Text = dgvMonth.Rows[_selectedRow].Cells[1].Value.ToString();
+                tbRammendi.Text = dgvMonth.Rows[_selectedRow].Cells[2].Value.ToString();
+                tbProdutivo.Text = dgvMonth.Rows[_selectedRow].Cells[3].Value.ToString();
+                tbMacConsiderate.Text = dgvMonth.Rows[_selectedRow].Cells[4].Value.ToString();
+                if(dgvMonth.Rows[_selectedRow].Cells[0].Value.ToString().Length==5) cbFinezza.Text = dgvMonth.Rows[_selectedRow].Cells[0].Value.ToString().Substring(4, 1);
+                else cbFinezza.Text = dgvMonth.Rows[_selectedRow].Cells[0].Value.ToString().Substring(4, 2);
+                tbMancanzaLavoro.Text = dgvMonth.Rows[_selectedRow].Cells[6].Value.ToString();
+                tbFermataStraiordinaria.Text = dgvMonth.Rows[_selectedRow].Cells[7].Value.ToString();
+                tbTempoCalendarioTEEP.Text = dgvMonth.Rows[_selectedRow].Cells[8].Value.ToString();
             }
         }
         private void btnInsert_Click(object sender, EventArgs e)
@@ -330,5 +401,12 @@ namespace Sinotico
             base.OnLoad(e);
         }
         #endregion Events
+
+      
+
+        private void dtpMonth_ValueChanged(object sender, EventArgs e)
+        {
+            LoadRecords();
+        }
     }
 }

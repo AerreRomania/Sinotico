@@ -43,6 +43,14 @@
             this.btnUpdate = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cbUpdateRuntime = new System.Windows.Forms.CheckBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.intensity_label = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btn_save = new System.Windows.Forms.Button();
+            this.Intensity_slider = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSettings)).BeginInit();
             this.tcSettings.SuspendLayout();
             this.tpColors.SuspendLayout();
@@ -51,6 +59,8 @@
             this.tpUpdate.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnUpdate)).BeginInit();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Intensity_slider)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvSettings
@@ -85,6 +95,7 @@
             this.tcSettings.Controls.Add(this.tpColors);
             this.tcSettings.Controls.Add(this.tpHolidays);
             this.tcSettings.Controls.Add(this.tpUpdate);
+            this.tcSettings.Controls.Add(this.tabPage1);
             this.tcSettings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tcSettings.Location = new System.Drawing.Point(0, 0);
             this.tcSettings.Multiline = true;
@@ -228,6 +239,106 @@
             this.cbUpdateRuntime.UseVisualStyleBackColor = true;
             this.cbUpdateRuntime.CheckedChanged += new System.EventHandler(this.cbUpdateRuntime_CheckedChanged_1);
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.label5);
+            this.tabPage1.Controls.Add(this.label4);
+            this.tabPage1.Controls.Add(this.label3);
+            this.tabPage1.Controls.Add(this.intensity_label);
+            this.tabPage1.Controls.Add(this.label2);
+            this.tabPage1.Controls.Add(this.btn_save);
+            this.tabPage1.Controls.Add(this.Intensity_slider);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(392, 211);
+            this.tabPage1.TabIndex = 3;
+            this.tabPage1.Text = "Intensity";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.SystemColors.Control;
+            this.label5.Location = new System.Drawing.Point(360, 52);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(25, 13);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "100";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.SystemColors.Control;
+            this.label4.Location = new System.Drawing.Point(188, 52);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(19, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "75";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.SystemColors.Control;
+            this.label3.Location = new System.Drawing.Point(10, 52);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(19, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "50";
+            // 
+            // intensity_label
+            // 
+            this.intensity_label.AutoSize = true;
+            this.intensity_label.BackColor = System.Drawing.Color.Transparent;
+            this.intensity_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.intensity_label.Location = new System.Drawing.Point(3, 76);
+            this.intensity_label.Name = "intensity_label";
+            this.intensity_label.Size = new System.Drawing.Size(51, 16);
+            this.intensity_label.TabIndex = 6;
+            this.intensity_label.Text = "label3";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(3, 3);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(193, 16);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Select alarm light intensity:";
+            // 
+            // btn_save
+            // 
+            this.btn_save.BackColor = System.Drawing.Color.Gainsboro;
+            this.btn_save.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btn_save.FlatAppearance.BorderSize = 0;
+            this.btn_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_save.Location = new System.Drawing.Point(3, 177);
+            this.btn_save.Name = "btn_save";
+            this.btn_save.Size = new System.Drawing.Size(386, 31);
+            this.btn_save.TabIndex = 4;
+            this.btn_save.Text = "Save";
+            this.btn_save.UseVisualStyleBackColor = false;
+            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
+            // 
+            // Intensity_slider
+            // 
+            this.Intensity_slider.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Intensity_slider.LargeChange = 25;
+            this.Intensity_slider.Location = new System.Drawing.Point(6, 25);
+            this.Intensity_slider.Maximum = 100;
+            this.Intensity_slider.Minimum = 50;
+            this.Intensity_slider.Name = "Intensity_slider";
+            this.Intensity_slider.Size = new System.Drawing.Size(380, 45);
+            this.Intensity_slider.SmallChange = 25;
+            this.Intensity_slider.TabIndex = 0;
+            this.Intensity_slider.Tag = "";
+            this.Intensity_slider.TickFrequency = 25;
+            this.Intensity_slider.Value = 50;
+            this.Intensity_slider.ValueChanged += new System.EventHandler(this.Intensity_slider_ValueChanged);
+            // 
             // FrmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -247,6 +358,9 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnUpdate)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Intensity_slider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -268,5 +382,13 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btn_save;
+        private System.Windows.Forms.TrackBar Intensity_slider;
+        private System.Windows.Forms.Label intensity_label;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
     }
 }

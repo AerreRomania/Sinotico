@@ -646,6 +646,7 @@ namespace Sinotico
         private void btnParameters_Click(object sender, EventArgs e)
         {
             var frmParameters = new MonthScartiRammendi();
+            frmParameters.WindowState = FormWindowState.Maximized;
             frmParameters.ShowDialog();
             frmParameters.Dispose();
         }

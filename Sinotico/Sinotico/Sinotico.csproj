@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="DatabaseTableClasses\EfficiencyBounds.cs" />
     <Compile Include="DatabaseTableClasses\Holidays.cs" />
+    <Compile Include="DatabaseTableClasses\IntensityBounds.cs" />
     <Compile Include="DatabaseTableClasses\MonthTrash.cs" />
     <Compile Include="DatabaseTableClasses\Tables.cs" />
     <Compile Include="ExcelExport.cs" />
