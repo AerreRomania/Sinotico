@@ -8,6 +8,8 @@ namespace CsvLibExpress
 {
     public class CsvLib
     {
+        public static readonly int DefaultMonths = 3;
+        public static readonly string DefaultTable = "csv_extend";
         /// <summary>
         /// The original directory of SPR3
         /// </summary>
@@ -78,7 +80,7 @@ namespace CsvLibExpress
                             else if (i == 24)
                                 newRow[24] = GetFilename(rows[24].ToString(), 3, false);
                             else
-                            //insert original values in string
+                                //insert original values in string
                                 newRow[i] = rows[i];
                         }
                         //add parts of the 'Filename' column by pattern
@@ -116,7 +118,7 @@ namespace CsvLibExpress
                     // Gets the file name
                     var myFileName = Path.GetFileName(MyFile); //MyFile.Split('\\').Last();
                     if (File.Exists(MyFile)) continue;
-                    var sourceFileName = Path.Combine(_originalStorePath, originalFileName);                
+                    var sourceFileName = Path.Combine(_originalStorePath, originalFileName);
                     File.Copy(sourceFileName, MyFile, true);
                     var startTime = DateTime.Now;
                     var con = new SqlConnection(Context);
@@ -198,10 +200,12 @@ namespace CsvLibExpress
                     //csvRamm.SendFileToDb();
                     //log.WriteLog(message: "Status: Scarti-rammendi accepted; Estimated time: " + 
                     //    ms.ToString() + "ms");
-                    
+
                     //var _HumidityTemperature = new TemperatureExtractor();
                     //_HumidityTemperature.InsertNewRecords();
                 }
+
+                EraseDataFromDatabase(DefaultTable, DefaultMonths, Context);
             }
             catch (UnauthorizedAccessException unex)
             {
@@ -212,6 +216,25 @@ namespace CsvLibExpress
                 log.WriteLog(message: "! Deny " + ex.Message);
             }
         }
+
+        /* Erasing data from given table name in past older then months parameter */
+        private void EraseDataFromDatabase(string table, int months, string context)
+        {
+            string query = $"DELETE FROM {table} WHERE CAST([Data Output Time] AS DATETIME) < DATEADD(MM,-{months},GETDATE())";
+
+            using (var con = new SqlConnection(context))
+            {
+                var cmd = new SqlCommand()
+                {
+                    CommandText = query,
+                    CommandType = CommandType.Text
+                };
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+                log.WriteLog(message: $"Rows deleted from {table}: {rowsAffected}");
+            }
+        }
+
         #region WorkWithFileName
         private bool CompareFileNameFormat(string txt)
         {
