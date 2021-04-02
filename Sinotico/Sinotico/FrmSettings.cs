@@ -36,6 +36,8 @@ namespace Sinotico
             StyleDataGridView(dgvSettings);
             LoadData();
 
+            cb_interval.SelectedIndex = GetInterval(MainWnd.GetTableSource());
+
             if (Properties.Settings.Default.UpdateSettings)
             {
                 //update user settings from previous version
@@ -384,6 +386,57 @@ namespace Sinotico
                 block = false;
             }
             intensity_label.Text ="Selected intesity: "+ Intensity_slider.Value.ToString();
+        }
+
+        private int GetInterval(string interval)
+        {
+            int index=-1;
+           switch(interval)
+            {
+                case "extendview": index=0;
+                    break;
+                case "currentyearview": index=1;
+                    break;
+                case "historyview":index= 2;
+                    break;
+            }
+            return index;
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+                switch (cb_interval.SelectedIndex)
+                {
+                    case 0:
+                        {
+                            MainWnd.SetTableSource("extendview");
+                            
+                            Properties.Settings.Default.TableSource = MainWnd.GetTableSource();
+                        Properties.Settings.Default.Save();
+                        MessageBox.Show(Properties.Settings.Default.TableSource, "Table Source:");
+                    }
+                        break;
+                    case 1:
+                        {
+                            MainWnd.SetTableSource("currentyearview");
+                            
+                        Properties.Settings.Default.TableSource = MainWnd.GetTableSource();
+                        Properties.Settings.Default.Save();
+                        MessageBox.Show(Properties.Settings.Default.TableSource, "Table Source:");
+                    }
+                        break;
+                    case 2:
+                        {
+                            MainWnd.SetTableSource("historyview");
+                           
+                        Properties.Settings.Default.TableSource = MainWnd.GetTableSource();
+                        Properties.Settings.Default.Save();
+                        MessageBox.Show(Properties.Settings.Default.TableSource, "Table Source:");
+                    }
+                        break;
+                   
+                }
+            
         }
     }
 }

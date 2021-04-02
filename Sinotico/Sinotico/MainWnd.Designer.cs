@@ -383,6 +383,7 @@
             this._squadra_2 = new System.Windows.Forms.Label();
             this._squadra_1 = new System.Windows.Forms.Label();
             this.pnLayoutCommander = new System.Windows.Forms.Panel();
+            this.lbl_datamissing = new System.Windows.Forms.Label();
             this.pbOpenExtensionRenamer = new System.Windows.Forms.PictureBox();
             this.lblSelectedMode = new System.Windows.Forms.Label();
             this.pbBackToReport = new System.Windows.Forms.PictureBox();
@@ -4694,6 +4695,7 @@
             // pnLayoutCommander
             // 
             this.pnLayoutCommander.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.pnLayoutCommander.Controls.Add(this.lbl_datamissing);
             this.pnLayoutCommander.Controls.Add(this.pbOpenExtensionRenamer);
             this.pnLayoutCommander.Controls.Add(this.lblSelectedMode);
             this.pnLayoutCommander.Controls.Add(this.pbBackToReport);
@@ -4708,6 +4710,17 @@
             this.pnLayoutCommander.Size = new System.Drawing.Size(1333, 50);
             this.pnLayoutCommander.TabIndex = 697;
             this.pnLayoutCommander.Paint += new System.Windows.Forms.PaintEventHandler(this.pnLayoutCommander_Paint);
+            // 
+            // lbl_datamissing
+            // 
+            this.lbl_datamissing.AutoSize = true;
+            this.lbl_datamissing.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_datamissing.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.lbl_datamissing.Location = new System.Drawing.Point(1218, 15);
+            this.lbl_datamissing.Name = "lbl_datamissing";
+            this.lbl_datamissing.Size = new System.Drawing.Size(183, 20);
+            this.lbl_datamissing.TabIndex = 716;
+            this.lbl_datamissing.Text = "Data missing from SPR3";
             // 
             // pbOpenExtensionRenamer
             // 
@@ -5789,6 +5802,7 @@
         private System.Windows.Forms.Label Operator3;
         private System.Windows.Forms.Label Operator2;
         private System.Windows.Forms.Label Operator1;
+        private System.Windows.Forms.Label lbl_datamissing;
     }
     }
 

@@ -25,6 +25,7 @@ namespace Sinotico
         //public static string conString = "Data Source=KNSQL2014;Initial Catalog=Sinotico;Integrated Security=SSPI"; //Unused
         public static string conStringOY = "Data Source = 192.168.96.37; Initial Catalog = ONLYOU; user=sa;password=olimpiasknitting;";
         public static SqlConnection _sql_con = new SqlConnection(conString);
+       
 
         /*
          * Objectivity
@@ -187,6 +188,16 @@ namespace Sinotico
             _to_date1 = value;
         }
 
+        private static string _tableSource;
+        public static void SetTableSource(string value)
+        {
+            _tableSource = value;
+           
+        }
+        public static string GetTableSource()
+        {
+            return _tableSource;
+        }
         //private static string lastReceivedFile;
 
         /*
@@ -524,7 +535,7 @@ namespace Sinotico
 
             _dateToPicker = dtpTo;
             _dateFromPicker = dtpFrom;
-
+            SetTableSource(Properties.Settings.Default.TableSource);
             _sqOne = cb_SQ_1;
             _sqTwo = cb_SQ_2;
             _sqThree = cb_SQ_3;
@@ -610,6 +621,7 @@ namespace Sinotico
             _tooltip_controls.SetToolTip(cbMostra, "Show machines in each efficiency zone");
             _tooltip_controls.SetToolTip(cbPercent, "Show percentages total state");
             _tooltip_controls.SetToolTip(cbTeli, "Show quantity values in scarti or rammendi state");
+            _tooltip_controls.SetToolTip(lbl_datamissing, "There is no data for shift 23-07 today.");
 
             //Set optional date points
 

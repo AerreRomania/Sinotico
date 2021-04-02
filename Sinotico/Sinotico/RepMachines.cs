@@ -452,9 +452,10 @@ namespace Sinotico
         {
             _table_data = new DataTable();
 
-            var cmd = new SqlCommand("get_data_in_month", MainWnd._sql_con)
+            var cmd = new SqlCommand("get_data_in_month_test", MainWnd._sql_con)
             {
-                CommandType = CommandType.StoredProcedure
+                CommandType = CommandType.StoredProcedure,
+                CommandTimeout = 300
             };
             if (string.IsNullOrEmpty(color) || color == "<All>")
                 color = string.Empty;
@@ -464,6 +465,7 @@ namespace Sinotico
             cmd.Parameters.Add("@finesse", SqlDbType.VarChar).Value = MainWnd.Get_fin_array().ToString();
             cmd.Parameters.Add("@colore", SqlDbType.VarChar).Value = color;
             cmd.Parameters.Add("@operatorMode", SqlDbType.Bit).Value = isOperatorMode;
+            cmd.Parameters.Add("@tablename", SqlDbType.VarChar).Value = MainWnd.GetTableSource();
 
             MainWnd._sql_con.Open();
             var dr = cmd.ExecuteReader();
@@ -1233,7 +1235,7 @@ namespace Sinotico
 
         private void btnOperatorsTot_Click(object sender, EventArgs e)
         {
-            isOperatorMode = true;
+            isOperatorMode = false;
             _is_squadra_filter = false;
             _sorted = false;
             _from_machine = 1;

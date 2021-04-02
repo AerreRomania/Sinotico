@@ -51,6 +51,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btn_save = new System.Windows.Forms.Button();
             this.Intensity_slider = new System.Windows.Forms.TrackBar();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.cb_interval = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSettings)).BeginInit();
             this.tcSettings.SuspendLayout();
             this.tpColors.SuspendLayout();
@@ -61,6 +65,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnUpdate)).BeginInit();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Intensity_slider)).BeginInit();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvSettings
@@ -96,6 +101,7 @@
             this.tcSettings.Controls.Add(this.tpHolidays);
             this.tcSettings.Controls.Add(this.tpUpdate);
             this.tcSettings.Controls.Add(this.tabPage1);
+            this.tcSettings.Controls.Add(this.tabPage2);
             this.tcSettings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tcSettings.Location = new System.Drawing.Point(0, 0);
             this.tcSettings.Multiline = true;
@@ -339,6 +345,57 @@
             this.Intensity_slider.Value = 50;
             this.Intensity_slider.ValueChanged += new System.EventHandler(this.Intensity_slider_ValueChanged);
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.cb_interval);
+            this.tabPage2.Controls.Add(this.button1);
+            this.tabPage2.Controls.Add(this.label6);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(392, 211);
+            this.tabPage2.TabIndex = 4;
+            this.tabPage2.Text = "Data Interval";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(3, 3);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(219, 16);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Select data inteval for queries:";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Gainsboro;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(3, 177);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(386, 31);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Save";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // cb_interval
+            // 
+            this.cb_interval.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_interval.FormattingEnabled = true;
+            this.cb_interval.Items.AddRange(new object[] {
+            "3 Months",
+            "Current Year",
+            "History"});
+            this.cb_interval.Location = new System.Drawing.Point(8, 22);
+            this.cb_interval.Name = "cb_interval";
+            this.cb_interval.Size = new System.Drawing.Size(214, 24);
+            this.cb_interval.TabIndex = 8;
+            // 
             // FrmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -361,6 +418,8 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Intensity_slider)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -390,5 +449,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cb_interval;
     }
 }
