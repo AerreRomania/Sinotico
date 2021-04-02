@@ -224,14 +224,15 @@ namespace CsvLibExpress
 
             using (var con = new SqlConnection(context))
             {
-                var cmd = new SqlCommand()
+                var cmd = new SqlCommand(query, con)
                 {
-                    CommandText = query,
-                    CommandType = CommandType.Text
+                    CommandType = CommandType.Text,
+                    CommandTimeout= 300
                 };
-
+                con.Open();
                 int rowsAffected = cmd.ExecuteNonQuery();
                 log.WriteLog(message: $"Rows deleted from {table}: {rowsAffected}");
+                con.Close();
             }
         }
 
