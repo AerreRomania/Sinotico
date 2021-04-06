@@ -190,6 +190,7 @@ namespace Sinotico
             };
             cmd.Parameters.Add("@from_date", SqlDbType.DateTime).Value = Get_Date_From();
             cmd.Parameters.Add("@to_date", SqlDbType.DateTime).Value = Get_Date_To();
+            cmd.Parameters.Add("@table", SqlDbType.VarChar).Value = MainWnd.GetTableSource();
             MainWnd._sql_con.Open();
             var da = new SqlDataAdapter(cmd);
             da.Fill(ds);
