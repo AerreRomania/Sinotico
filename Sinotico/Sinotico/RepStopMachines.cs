@@ -100,6 +100,7 @@ namespace Sinotico
             cmd.Parameters.Add("@from_date", SqlDbType.DateTime).Value = MainWnd.Get_from_date();
             cmd.Parameters.Add("@to_date", SqlDbType.DateTime).Value = MainWnd.Get_to_date();
             cmd.Parameters.Add("@shift", SqlDbType.VarChar).Value = MainWnd.Get_shift_array().ToString();
+            cmd.Parameters.Add("@table", SqlDbType.VarChar).Value = MainWnd.GetTableSource();
 
             MainWnd._sql_con.Open();
             var dr = cmd.ExecuteReader();
@@ -324,7 +325,14 @@ namespace Sinotico
             catch (Exception ex)
             {
                 LoadingInfo.CloseLoading();
-                MessageBox.Show("You encountered an exception: " + ex, "Error.");
+                if (ex.Message == "Attempted to divide by zero.")
+                {
+                    MessageBox.Show("No Data.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("You encountered an exception: " + ex, "Error.");
+                }
             }
         }
 

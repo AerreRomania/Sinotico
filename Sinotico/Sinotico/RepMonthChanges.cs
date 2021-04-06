@@ -78,10 +78,12 @@ namespace Sinotico
 
             var cmd = new SqlCommand(txt, MainWnd._sql_con)
                 {
-                CommandType = CommandType.StoredProcedure
+                CommandType = CommandType.StoredProcedure,
+                CommandTimeout=1000
                 };
 
             cmd.Parameters.Add("@year", SqlDbType.Int).Value = Convert.ToInt32(_year);
+            cmd.Parameters.Add("@table", SqlDbType.VarChar).Value = MainWnd.GetTableSource();
             
             MainWnd._sql_con.Open();
             var dr = cmd.ExecuteReader();

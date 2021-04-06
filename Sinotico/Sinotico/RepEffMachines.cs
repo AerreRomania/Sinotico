@@ -45,8 +45,8 @@ namespace Sinotico
             {
             LoadingInfo.CloseLoading();
 
-            dtpFrom.Value = new DateTime(2020, 3, 16);
-            dtpTo.Value = new DateTime(2020, 3, 16);
+            dtpFrom.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            dtpTo.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
 
             cbMedia.Items.Clear();
             cbMedia.Items.Add("<All>");
@@ -276,7 +276,7 @@ namespace Sinotico
                 var cmd = new SqlCommand("get_data_in_eff", MainWnd._sql_con)
                 {
                     CommandType = CommandType.StoredProcedure,
-                    //CommandTimeout = 999999999
+                    CommandTimeout = 300
                 };
 
                 cmd.Parameters.Add("@from_date", SqlDbType.DateTime).Value = Get_from_date();
@@ -285,6 +285,7 @@ namespace Sinotico
                 cmd.Parameters.Add("@filter", SqlDbType.VarChar).Value = filter.ToString();
                 cmd.Parameters.Add("@file_name", SqlDbType.VarChar).Value = _file_name;
                 cmd.Parameters.Add("@finesse", SqlDbType.VarChar).Value = _fin;
+                cmd.Parameters.Add("@table", SqlDbType.VarChar).Value = MainWnd.GetTableSource();
 
                 MainWnd._sql_con.Open();
                 var da = new SqlDataAdapter(cmd);
@@ -293,7 +294,7 @@ namespace Sinotico
                 //dr.Close();
                 cmd = null;
 
-            if(ds.Tables[0].Rows.Count <= 0 && ds.Tables[1].Rows.Count <= 0)
+            if(ds.Tables[0].Rows.Count <= 0 || ds.Tables[1].Rows.Count <= 0)
             {
                 LoadingInfo.CloseLoading();
                 MessageBox.Show("No data!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);

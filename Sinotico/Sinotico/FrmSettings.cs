@@ -413,7 +413,7 @@ namespace Sinotico
                             
                             Properties.Settings.Default.TableSource = MainWnd.GetTableSource();
                         Properties.Settings.Default.Save();
-                        MessageBox.Show(Properties.Settings.Default.TableSource, "Table Source:");
+                        MessageBox.Show("Saved!", "Data Interval");
                     }
                         break;
                     case 1:
@@ -422,7 +422,7 @@ namespace Sinotico
                             
                         Properties.Settings.Default.TableSource = MainWnd.GetTableSource();
                         Properties.Settings.Default.Save();
-                        MessageBox.Show(Properties.Settings.Default.TableSource, "Table Source:");
+                        MessageBox.Show("Saved!", "Data Interval");
                     }
                         break;
                     case 2:
@@ -431,7 +431,7 @@ namespace Sinotico
                            
                         Properties.Settings.Default.TableSource = MainWnd.GetTableSource();
                         Properties.Settings.Default.Save();
-                        MessageBox.Show(Properties.Settings.Default.TableSource, "Table Source:");
+                        MessageBox.Show("Saved!", "Data Interval");
                     }
                         break;
                    

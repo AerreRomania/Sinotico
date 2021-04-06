@@ -452,7 +452,7 @@ namespace Sinotico
         {
             _table_data = new DataTable();
 
-            var cmd = new SqlCommand("get_data_in_month_test", MainWnd._sql_con)
+            var cmd = new SqlCommand("get_data_in_month", MainWnd._sql_con) ////TESTING
             {
                 CommandType = CommandType.StoredProcedure,
                 CommandTimeout = 300

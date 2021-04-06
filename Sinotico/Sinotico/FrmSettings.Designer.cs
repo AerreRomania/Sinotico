@@ -52,9 +52,9 @@
             this.btn_save = new System.Windows.Forms.Button();
             this.Intensity_slider = new System.Windows.Forms.TrackBar();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label6 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.cb_interval = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSettings)).BeginInit();
             this.tcSettings.SuspendLayout();
             this.tpColors.SuspendLayout();
@@ -358,16 +358,18 @@
             this.tabPage2.Text = "Data Interval";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // label6
+            // cb_interval
             // 
-            this.label6.AutoSize = true;
-            this.label6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(3, 3);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(219, 16);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "Select data inteval for queries:";
+            this.cb_interval.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_interval.FormattingEnabled = true;
+            this.cb_interval.Items.AddRange(new object[] {
+            "3 Months",
+            "Current Year",
+            "History"});
+            this.cb_interval.Location = new System.Drawing.Point(8, 22);
+            this.cb_interval.Name = "cb_interval";
+            this.cb_interval.Size = new System.Drawing.Size(214, 24);
+            this.cb_interval.TabIndex = 8;
             // 
             // button1
             // 
@@ -383,18 +385,16 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // cb_interval
+            // label6
             // 
-            this.cb_interval.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_interval.FormattingEnabled = true;
-            this.cb_interval.Items.AddRange(new object[] {
-            "3 Months",
-            "Current Year",
-            "History"});
-            this.cb_interval.Location = new System.Drawing.Point(8, 22);
-            this.cb_interval.Name = "cb_interval";
-            this.cb_interval.Size = new System.Drawing.Size(214, 24);
-            this.cb_interval.TabIndex = 8;
+            this.label6.AutoSize = true;
+            this.label6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(3, 3);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(141, 16);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Select data inteval:";
             // 
             // FrmSettings
             // 

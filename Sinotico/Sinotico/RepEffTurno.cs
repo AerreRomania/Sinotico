@@ -158,13 +158,15 @@ namespace Sinotico
                
             var cmd = new SqlCommand("getmergedproductioneffects", MainWnd._sql_con)
             {
-                CommandType = CommandType.StoredProcedure
+                CommandType = CommandType.StoredProcedure,
+                CommandTimeout= 300
             };
             cmd.Parameters.Add("@from_date", SqlDbType.DateTime).Value = GetDateFrom;
             cmd.Parameters.Add("@to_date", SqlDbType.DateTime).Value = GetDateTo;
             cmd.Parameters.Add("@shift", SqlDbType.VarChar).Value = shift;
             cmd.Parameters.Add("@machine", SqlDbType.VarChar).Value = _machines_array.ToString();
             cmd.Parameters.Add("@machinesNr", SqlDbType.Int).Value = machinesNr;
+            cmd.Parameters.Add("@table", SqlDbType.VarChar).Value = MainWnd.GetTableSource();
 
             MainWnd._sql_con.Open();
             dr = cmd.ExecuteReader();

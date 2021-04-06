@@ -57,19 +57,28 @@ namespace Sinotico
 
         private void LoadProcedure()
         {
-            var cmd = new SqlCommand("[getarticlepartitionedqty]", MainWnd._sql_con)
+            try
             {
-                CommandType = CommandType.StoredProcedure
-            };
+                var cmd = new SqlCommand("[getarticlepartitionedqty]", MainWnd._sql_con)
+                {
+                    CommandType = CommandType.StoredProcedure,
+                    CommandTimeout = 500
+                };
 
-            cmd.Parameters.Add("@dateFrom", SqlDbType.DateTime).Value = Get_Date_From();
-            cmd.Parameters.Add("@dateTo", SqlDbType.DateTime).Value = Get_Date_To();
-            cmd.Parameters.Add("@file", SqlDbType.VarChar).Value = _fileName;
+                cmd.Parameters.Add("@dateFrom", SqlDbType.DateTime).Value = Get_Date_From();
+                cmd.Parameters.Add("@dateTo", SqlDbType.DateTime).Value = Get_Date_To();
+                cmd.Parameters.Add("@file", SqlDbType.VarChar).Value = _fileName;
+                cmd.Parameters.Add("@table", SqlDbType.VarChar).Value = MainWnd.GetTableSource();
 
-            var da = new SqlDataAdapter(cmd);
-            var ds = new DataSet();
-            da.Fill(_dataSet);
-            da.Dispose();
+                var da = new SqlDataAdapter(cmd);
+                var ds = new DataSet();
+                da.Fill(_dataSet);
+                da.Dispose();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error: " + ex, "Error.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void CreateTableView()
         {

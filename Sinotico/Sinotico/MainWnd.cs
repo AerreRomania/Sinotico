@@ -2928,7 +2928,7 @@ namespace Sinotico
             _items_collection = new string[] { "Andamento dell'OEE rettilinee", "Produzione capi efficienza", "Produzione giornaliera",
                                                "Controllo Temperatura e Umidita", "Tempi per CQ operatori", "Tempi per Pulizie operatori",
                                                "Tempi per CQ", "Pulizie fronture", "Pulizie ordinarie", "Numero cambio articolo",
-                                               "Capi prodotti appaiati", "Causali fermate charts", "Causali fermate",
+                                                 "Causali fermate", //"Causali fermate charts","Capi prodotti appaiati",
                                                "Efficienza machine in funzione e non", "Efficienza per macchina/turno", "Efficienza per macchina"};
             _my_menu_items.AddRange(_items_collection);
 
