@@ -41,7 +41,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tbMacConsiderate = new System.Windows.Forms.TextBox();
             this.tbProdutivo = new System.Windows.Forms.TextBox();
-            this.btnChange = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.tbTempoCalendarioTEEP = new System.Windows.Forms.TextBox();
@@ -146,7 +145,7 @@
             this.btnInsert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInsert.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInsert.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnInsert.Location = new System.Drawing.Point(107, 411);
+            this.btnInsert.Location = new System.Drawing.Point(163, 411);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnInsert.Size = new System.Drawing.Size(50, 27);
@@ -212,20 +211,6 @@
             this.tbProdutivo.TabIndex = 9;
             this.tbProdutivo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // btnChange
-            // 
-            this.btnChange.BackColor = System.Drawing.Color.White;
-            this.btnChange.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnChange.FlatAppearance.BorderSize = 0;
-            this.btnChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChange.Location = new System.Drawing.Point(163, 411);
-            this.btnChange.Name = "btnChange";
-            this.btnChange.Size = new System.Drawing.Size(50, 27);
-            this.btnChange.TabIndex = 13;
-            this.btnChange.Text = "Edit";
-            this.btnChange.UseVisualStyleBackColor = false;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.label10);
@@ -238,7 +223,6 @@
             this.panel1.Controls.Add(this.tbMancanzaLavoro);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.btnChange);
             this.panel1.Controls.Add(this.dtpMonth);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.tbScarti);
@@ -391,7 +375,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbMacConsiderate;
         private System.Windows.Forms.TextBox tbProdutivo;
-        private System.Windows.Forms.Button btnChange;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox cbFinezza;
         private System.Windows.Forms.Label label6;

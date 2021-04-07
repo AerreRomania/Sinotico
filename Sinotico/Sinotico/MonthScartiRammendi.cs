@@ -24,7 +24,7 @@ namespace Sinotico
             InitializeComponent();
             btnInsert.Click += btnInsert_Click;
             btnDelete.Click += btnDelete_Click;
-            btnChange.Click += btnChange_Click;
+           // btnChange.Click += btnChange_Click;
             CustomizeDataGridView(dgvMonth);
             dgvMonth.SelectionChanged += dgvMonth_SelectionChanged;
         }
@@ -203,7 +203,15 @@ namespace Sinotico
                                 where i.Date == Get_Date() && i.Finezza == Get_Finezza()
                                 select i).SingleOrDefault();
             if (existingItem != null)
-                return false;
+            {
+                if (!Change())
+                {
+                    MessageBox.Show("An error occured while editing!",
+                                    "Error editing",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                }
+            }
             var newItem = new MonthTrash
             {
                 Date = Get_Date(),
@@ -302,14 +310,14 @@ namespace Sinotico
                 }
                 else
                 {
-                    return true;
+                    return false;
                 }
             }
         }
 
         private void SetupToolTip(ToolTip info)
         {
-            info.SetToolTip(btnChange, "Select record in table and change existing values before you click 'Edit'.");
+           // info.SetToolTip(btnChange, "Select record in table and change existing values before you click 'Edit'.");
             info.SetToolTip(btnInsert, "Enter new values in fields before you click 'Insert'.");
             info.SetToolTip(btnDelete, "Select record in table before you click 'Delete'.");
         }

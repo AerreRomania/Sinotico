@@ -621,7 +621,7 @@ namespace Sinotico
             _tooltip_controls.SetToolTip(cbMostra, "Show machines in each efficiency zone");
             _tooltip_controls.SetToolTip(cbPercent, "Show percentages total state");
             _tooltip_controls.SetToolTip(cbTeli, "Show quantity values in scarti or rammendi state");
-            _tooltip_controls.SetToolTip(lbl_datamissing, "There is no data for shift 23-07 today.");
+            _tooltip_controls.SetToolTip(lbl_datamissing, "No missing data");
 
             //Set optional date points
 
@@ -822,6 +822,10 @@ namespace Sinotico
             base.OnLoad(e);
         }
 
+        private void CheckForMissingData()
+        {
+
+        }
         private void btnResetState_Click(object sender, EventArgs e)
         {
             if (_sqlHasError || _isReportMode) return;
@@ -1448,11 +1452,25 @@ namespace Sinotico
                         con.Open();
 
                         var dr = cmd.ExecuteReader();
+                        if(!dr.HasRows) 
+                        {
+                           
+                            lbl_datamissing.Visible = true;
+                            lbl_datamissing.Text = "Missing data from SPR3!";
+                            _tooltip_controls.SetToolTip(lbl_datamissing, "Data is missing for shift: "+Get_shift_array().ToString().Replace(",","")+". \n Data is from last good shift.");
+                           
+                            _tbl_machines.Load(dr);
 
-                        _tbl_machines.Load(dr);
-
-                        con.Close();
-                        dr.Close();
+                            con.Close();
+                            dr.Close();
+                        }
+                        else
+                        {
+                            lbl_datamissing.Visible = false;
+                            _tbl_machines.Load(dr);
+                            con.Close();
+                            dr.Close();
+                        }
                     }
                     GetMachineAlarms();
                     if (_machine_alarms.Count >= 1)
@@ -1825,7 +1843,7 @@ namespace Sinotico
             else PostMachineColors();
             LoadingInfo.CloseLoading();
         }
-
+        
         private void GetTotals()
         {            
             var machineRange = new[] { 1, 14 };     //starts from line 1

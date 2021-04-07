@@ -167,6 +167,14 @@ namespace CsvLibExpress
                         con.Close();
                         sbc.Close();
                     }
+                    using (var sbc=new SqlBulkCopy(con))
+                    {
+                        sbc.DestinationTableName = "csv_currentyear";
+                        con.Open();
+                        sbc.WriteToServer(csvDataTable, DataRowState.Added);
+                        con.Close();
+                        sbc.Close();
+                    }
                     //
                     // Copies last readed file into db temp_table
                     //
@@ -206,6 +214,7 @@ namespace CsvLibExpress
                 }
 
                 EraseDataFromDatabase(DefaultTable, DefaultMonths, Context);
+                EraseLastYear("csv_currentyear", Context);
             }
             catch (UnauthorizedAccessException unex)
             {
@@ -228,6 +237,23 @@ namespace CsvLibExpress
                 {
                     CommandType = CommandType.Text,
                     CommandTimeout= 300
+                };
+                con.Open();
+                int rowsAffected = cmd.ExecuteNonQuery();
+                log.WriteLog(message: $"Rows deleted from {table}: {rowsAffected}");
+                con.Close();
+            }
+        }
+        private void EraseLastYear(string table, string context)
+        {
+            string query = $"DELETE FROM {table} where DATEPART(YEAR,CAST([Data Output Time] as date)) != DATEPART(year, getdate())";
+
+            using (var con = new SqlConnection(context))
+            {
+                var cmd = new SqlCommand(query, con)
+                {
+                    CommandType = CommandType.Text,
+                    CommandTimeout = 300
                 };
                 con.Open();
                 int rowsAffected = cmd.ExecuteNonQuery();
