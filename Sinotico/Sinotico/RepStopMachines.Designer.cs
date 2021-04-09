@@ -40,6 +40,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvReport = new System.Windows.Forms.DataGridView();
+            this.btnInfo = new System.Windows.Forms.Button();
+            this.lblInfo = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReport)).BeginInit();
             this.SuspendLayout();
@@ -47,6 +49,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.btnInfo);
             this.panel1.Controls.Add(this.btnHide);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.lblTo);
@@ -56,7 +59,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(927, 104);
             this.panel1.TabIndex = 5;
@@ -72,7 +75,7 @@
             this.btnHide.ForeColor = System.Drawing.Color.SteelBlue;
             this.btnHide.Image = global::Sinotico.Properties.Resources.unhide_30;
             this.btnHide.Location = new System.Drawing.Point(866, 21);
-            this.btnHide.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnHide.Margin = new System.Windows.Forms.Padding(2);
             this.btnHide.Name = "btnHide";
             this.btnHide.Size = new System.Drawing.Size(52, 57);
             this.btnHide.TabIndex = 23;
@@ -88,8 +91,8 @@
             this.button2.ForeColor = System.Drawing.Color.LightBlue;
             this.button2.Image = global::Sinotico.Properties.Resources.checkmark_30;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(380, 17);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Location = new System.Drawing.Point(480, 14);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(79, 50);
             this.button2.TabIndex = 22;
@@ -178,7 +181,7 @@
             this.dgvReport.EnableHeadersVisualStyles = false;
             this.dgvReport.GridColor = System.Drawing.Color.White;
             this.dgvReport.Location = new System.Drawing.Point(0, 104);
-            this.dgvReport.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvReport.Margin = new System.Windows.Forms.Padding(2);
             this.dgvReport.Name = "dgvReport";
             this.dgvReport.RowHeadersVisible = false;
             this.dgvReport.RowTemplate.Height = 28;
@@ -189,15 +192,42 @@
             this.dgvReport.Scroll += new System.Windows.Forms.ScrollEventHandler(this.dgvReport_Scroll);
             this.dgvReport.Paint += new System.Windows.Forms.PaintEventHandler(this.dgvReport_Paint);
             // 
+            // btnInfo
+            // 
+            this.btnInfo.FlatAppearance.BorderSize = 0;
+            this.btnInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInfo.ForeColor = System.Drawing.Color.LightBlue;
+            this.btnInfo.Image = global::Sinotico.Properties.Resources.icons8_information_32_lightblue;
+            this.btnInfo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnInfo.Location = new System.Drawing.Point(382, 14);
+            this.btnInfo.Margin = new System.Windows.Forms.Padding(2);
+            this.btnInfo.Name = "btnInfo";
+            this.btnInfo.Size = new System.Drawing.Size(83, 50);
+            this.btnInfo.TabIndex = 24;
+            this.btnInfo.Text = "Info";
+            this.btnInfo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnInfo.UseVisualStyleBackColor = true;
+            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
+            // 
+            // lblInfo
+            // 
+            this.lblInfo.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lblInfo.Location = new System.Drawing.Point(79, 104);
+            this.lblInfo.Name = "lblInfo";
+            this.lblInfo.Size = new System.Drawing.Size(848, 287);
+            this.lblInfo.TabIndex = 7;
+            // 
             // RepStopMachines
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(927, 406);
+            this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.dgvReport);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "RepStopMachines";
             this.Text = "Stop machines";
             this.panel1.ResumeLayout(false);
@@ -217,5 +247,7 @@
         private System.Windows.Forms.DataGridView dgvReport;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnHide;
-        }
+        private System.Windows.Forms.Button btnInfo;
+        private System.Windows.Forms.Label lblInfo;
+    }
     }

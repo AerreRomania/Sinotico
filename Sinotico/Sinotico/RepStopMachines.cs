@@ -36,7 +36,15 @@ namespace Sinotico
             
             lblFrom.Text = MainWnd.Get_from_date().ToString("dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
             lblTo.Text = MainWnd.Get_to_date().ToString("dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
-
+            lblInfo.Visible = false;
+            lblInfo.Visible = false;
+            lblInfo.BackColor = Color.WhiteSmoke;
+            lblInfo.Font = new Font("Microsoft Sans Serif", 10, FontStyle.Regular);
+            lblInfo.Text = "                                -   Legend  -\n\n" +
+                           "    -   Tempo totale fermate= soma fermate ( HH:MM) \n" +
+                           "    -   % tempo fermata= tempo totale fermate / 24 H * days (HH:MM)\n" +
+                           "    -   Colona “differenza”= 24H * days - tempo totale tessitura (knitt time)\n" +
+                           "    -   Totale differenza= media Colona differenza\n";
             CreateReport();
 
             LoadingInfo.CloseLoading();
@@ -589,5 +597,26 @@ namespace Sinotico
             var export = new ExcelExport();
             export.ExportToExcel(dgvReport, Text);
             }
+
+        private void btnInfo_Click(object sender, EventArgs e)
+        {
+            var btn = sender as Button;
+            if (dgvReport.Visible)
+            {
+                btn.BackColor = Color.FromArgb(230, 230, 230);
+                dgvReport.Dock = DockStyle.None;
+                lblInfo.Dock = DockStyle.Fill;
+                dgvReport.Visible = false;
+                lblInfo.Visible = true;
+            }
+            else
+            {
+                btn.BackColor = Color.WhiteSmoke;
+                lblInfo.Dock = DockStyle.None;
+                dgvReport.Dock = DockStyle.Fill;
+                dgvReport.Visible = true;
+                lblInfo.Visible = false;
+            }
         }
+    }
     }
