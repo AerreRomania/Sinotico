@@ -211,23 +211,27 @@ namespace Sinotico
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Error);
                 }
+                return true;
             }
-            var newItem = new MonthTrash
+            else
             {
-                Date = Get_Date(),
-                Scarti = Get_Scarti(),
-                Rammendi = Get_Rammendi(),
-                Produtivo = Get_Produtivo(),
-                ConsiderateMac = Get_ConsiderateMachines(),
-                Finezza = Get_Finezza(),
-                MancanzaLavoro = Get_MancanzaLavoro(),
-                FermataStraordinaria = Get_FermataStraordinaria(),
-                CalendarioTEEP = Get_TcTeep()
-            };
-            Tables.TblMonthTrash.InsertOnSubmit(newItem);
-            FrmHolidays.dc.SubmitChanges();
-            LoadRecords();
-            return true;
+                var newItem = new MonthTrash
+                {
+                    Date = Get_Date(),
+                    Scarti = Get_Scarti(),
+                    Rammendi = Get_Rammendi(),
+                    Produtivo = Get_Produtivo(),
+                    ConsiderateMac = Get_ConsiderateMachines(),
+                    Finezza = Get_Finezza(),
+                    MancanzaLavoro = Get_MancanzaLavoro(),
+                    FermataStraordinaria = Get_FermataStraordinaria(),
+                    CalendarioTEEP = Get_TcTeep()
+                };
+                Tables.TblMonthTrash.InsertOnSubmit(newItem);
+                FrmHolidays.dc.SubmitChanges();
+                LoadRecords();
+                return true;
+            }
         }
         private bool Deletion()
         {
