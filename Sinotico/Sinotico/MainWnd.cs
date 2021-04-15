@@ -833,8 +833,8 @@ namespace Sinotico
             dtpFrom.Value = DateTime.Now;
             dtpTo.Value = DateTime.Now;
 
-            ResumeShift(true);
-
+           ResumeShift(true);
+           // CallProcedures();
             StartDelayedLoading();
         }
 
@@ -846,6 +846,7 @@ namespace Sinotico
 
             if (perform)
             {
+                Set_shift_array(new StringBuilder(""));
                 ListOfSelectedShifts.Clear();
                 cbNight.Checked = false;
                 cbMorning.Checked = false;
