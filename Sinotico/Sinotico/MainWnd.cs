@@ -222,6 +222,7 @@ namespace Sinotico
         private string _lastFileText, _lastDetectedShift;
         private int _groupBorderWidth;
         private string _cleanersType = string.Empty;
+        private string missingMachines = string.Empty;
         /*
          * CONSTANTS
          */
@@ -511,6 +512,7 @@ namespace Sinotico
                     //chart.Width = 400;
                 }
             }
+           _list_of_machines=_list_of_machines.OrderBy(o => int.Parse(o.Name.ToString().Remove(0,1))).ToList();
         }
 
         protected override void OnLoad(EventArgs e)
@@ -588,7 +590,7 @@ namespace Sinotico
 
             _tooltip_controls = new ToolTip
             {
-                AutoPopDelay = 5000,
+                AutoPopDelay = 15000,
                 InitialDelay = 200,
                 StripAmpersands = true,
                 UseAnimation = false
@@ -942,6 +944,7 @@ namespace Sinotico
 
         private void CallProcedures()
         {
+            missingMachines = string.Empty;
             SetupEfficiencyBounds();
             if (Get_from_date() > DateTime.Now || Get_to_date() > DateTime.Now) return;
 
@@ -1437,7 +1440,7 @@ namespace Sinotico
                         fullMode = "Tempo Standard";
                     using (var con = new SqlConnection(conString))
                     {
-                        var cmd = new SqlCommand("get_data", con)
+                        var cmd = new SqlCommand("get_data_test", con)
                         {
                             CommandType = CommandType.StoredProcedure
                         };
@@ -1453,13 +1456,13 @@ namespace Sinotico
                         con.Open();
 
                         var dr = cmd.ExecuteReader();
-                        if(!dr.HasRows) 
+                        if (!dr.HasRows)
                         {
-                           
+
                             lbl_datamissing.Visible = true;
                             lbl_datamissing.Text = "Missing data from SPR3!";
-                            _tooltip_controls.SetToolTip(lbl_datamissing, "Data is missing for shift: "+Get_shift_array().ToString().Replace(",","")+". \n Data is from last good shift.");
-                           
+                            _tooltip_controls.SetToolTip(lbl_datamissing, "Data is missing for shift: " + Get_shift_array().ToString().Replace(",", "") + ". \n Data is from last good shift.");
+
                             _tbl_machines.Load(dr);
 
                             con.Close();
@@ -1647,17 +1650,38 @@ namespace Sinotico
                     }
                     else
                     {
+                        
+                        DateTime currHour = DateTime.Now;
+                        DateTime Starthour = new DateTime();
+                        double currTime = 0;
+                        
+                        if (cbMorning.Checked) Starthour = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 7, 0, 0);
+                        if (cbAfternoon.Checked) Starthour = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 15, 0, 0);
+                        if (cbNight.Checked) Starthour = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 0, 0);
+                        if (currHour.Day != dtpTo.Value.Day) currTime = 8 * 60;
+                        else currTime = (currHour - Starthour).TotalMinutes;
                         foreach (DataRow row in _tbl_machines.Rows)
                         {
                             if (machine.Name.Remove(0, 1) != row[0].ToString()) continue;
-
+                            var machineNr = row[0].ToString();
                             var ferme = TimeSpan.FromMinutes(Convert.ToDouble(row[4]));
                             var tempStd = TimeSpan.FromMinutes(Convert.ToDouble(row[3]));
-
                             var strFerme = ferme.ToString(@"h\:mm");
                             var strTempoStandard = tempStd.ToString(@"h\:mm");
                             var temp = string.Empty;
-
+                            var missing = Convert.ToInt32(row[6].ToString());
+                            
+                            if ( currTime/10>missing )
+                            {
+                                lbl_datamissing.Visible = true;
+                                missingMachines+= " Machine: " + machineNr;
+                                // missingMachines += "\n Machine: "+machineNr;
+                            }
+                            else
+                            {
+                                lbl_datamissing.Visible = false;
+                            }
+                            _tooltip_controls.SetToolTip(lbl_datamissing, "Data is missing from: " +missingMachines);
                             switch (Mode)
                             {
                                 case "eff":
