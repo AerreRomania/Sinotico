@@ -493,6 +493,7 @@ namespace Sinotico
                             var rec = (from r in _mac_scarti_rammendi
                                        where r.Machine == machine
                                        select r).SingleOrDefault();
+                        if (rec == null) continue;
                             if (shift == "NIGHT")
                             {
                                 rec.Turno1Scarti = sumScarti;
@@ -535,6 +536,8 @@ namespace Sinotico
                     var lastRec = (from r in _mac_scarti_rammendi
                                    where r.Machine == machine
                                    select r).SingleOrDefault();
+                if (lastRec != null)
+                {
                     if (shift == "NIGHT")
                     {
                         lastRec.Turno1Scarti = sumScarti;
@@ -550,6 +553,7 @@ namespace Sinotico
                         lastRec.Turno3Scarti = sumScarti;
                         lastRec.Turno3Rammendi = sumRammendi;
                     }
+                }
                 }
 
                 _bsRep.DataSource = _table_report;
